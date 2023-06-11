@@ -20,6 +20,12 @@ if (boardShakeAmount > 0.01) {
 }
 
 //
+// Move Board
+boardY = lerp(boardY, boardGoalY, 0.2);
+
+
+
+//
 // Get Mouse Position
 mouseSquareIndexX = (mouse_x - boardX) div squareWidth;
 mouseSquareIndexY = (mouse_y - boardY) div squareWidth;
@@ -43,8 +49,8 @@ for (var square = 0; square < boardWidth*boardWidth; square++) {
 	var relativej = (flippedBoard) ? 7-j : j;
 	
 	// Position
-	var xx = boardX + i*squareWidth + pieceOnBoardOffsetX;
-	var yy = boardY + relativej*squareWidth + pieceOnBoardOffsetY;
+	var xx = i*squareWidth + pieceOnBoardOffsetX;
+	var yy = relativej*squareWidth + pieceOnBoardOffsetY;
 	var baseyy = yy;
 	
 	// Get Piece
@@ -119,8 +125,8 @@ for (var square = 0; square < boardWidth*boardWidth; square++) {
 if (pickedUpPiece != emptyPiece) {
 	
 	// Move Peice
-	pickedUpPiece.drawx = mouse_x;
-	pickedUpPiece.drawy = mouse_y;
+	pickedUpPiece.drawx = mouse_x-boardX;
+	pickedUpPiece.drawy = mouse_y-boardY;
 	
 	//Depth
 	depthGrid[# 0, ++pCount] = -1; //picked up "square" id
@@ -149,7 +155,7 @@ if (pickedUpPiece != emptyPiece) {
 		
 		//Place Shadow Correctly
 		var relativej = (flippedBoard) ? 7-mouseSquareIndexY : mouseSquareIndexY;
-		pickedUpPiece.nooffsetDrawY = boardY + relativej*squareWidth + pieceOnBoardOffsetY;
+		pickedUpPiece.nooffsetDrawY = relativej*squareWidth + pieceOnBoardOffsetY;
 		
 		
 		//End
@@ -200,9 +206,22 @@ if (gameOver) {
 				delete p;
 			}
 		}
+		
+		gameOverTimeNoParticles += (ds_list_size(particles) == 0);
+		if (gameOverTimeNoParticles > room_speed) {
+			
+			boardGoalY += boardGoalYSpeed;
+			boardGoalYSpeed -= 0.5; //accelerate
+		}
+		
+		if (gameOverTimeNoParticles > room_speed*2) {
+			instance_destroy();
+			exit;
+		}
 	}
+	
+	
 }
-
 
 
 var s = ds_list_size(particles);

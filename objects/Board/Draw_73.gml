@@ -1,6 +1,7 @@
 /// @description 
 
 // Board Square
+draw_set_font(fontBoard);
 for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	
 	var square = (flippedBoard) ? 63 - sqrr : sqrr;
@@ -86,12 +87,12 @@ for (var pieceDraworder = 0; pieceDraworder < s; pieceDraworder++) {
 			var shadowCol = (lightSquare) ? darkSquareTop : lightSquareEdge;
 		
 			//
-			draw_sprite_ext(sPieceShadow, 0, p.drawx + boardShakeX, p.nooffsetDrawY+boardShakeY, 1, 1, 0, shadowCol, 1);
+			draw_sprite_ext(sPieceShadow, 0, p.drawx+boardShakeX+boardX, p.nooffsetDrawY+boardShakeY+boardY, 1, 1, 0, shadowCol, 1);
 		}
 	
 		//Draw
 		var pCol = merge_colour(c_white, c_red, p.checkBlend*0.4);
-		draw_sprite_ext(p.mySprite, p.type, p.drawx + boardShakeX, p.drawy + boardShakeY, 1, 1, 0, pCol, 1);
+		draw_sprite_ext(p.mySprite, p.type, p.drawx+boardShakeX+boardX, p.drawy+boardShakeY+boardY, 1, 1, 0, pCol, 1);
 	}
 }
 
@@ -105,7 +106,7 @@ for (var parts = 0; parts < s; parts++) {
 	
 	//Get Info
 	var partData = particles[| parts];
-	partData.draw();
+	partData.draw(boardX, boardY);
 	
 }
 

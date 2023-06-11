@@ -21,7 +21,7 @@ function game_set_gamemode(mode) {
 		default:
 		break;
 		
-		case gamemode.as_black:
+		case gamemode.free_play_as_black:
 			var a = instance_create_depth(20, 20, 0, Agent);
 			a.isWhite = true;
 			a.game = g;
@@ -29,12 +29,25 @@ function game_set_gamemode(mode) {
 			g.agentBlack = a;
 		break;
 		
-		case gamemode.as_white:
+		case gamemode.free_play_as_white:
 			var a = instance_create_depth(20, 20, 0, Agent);
 			a.isWhite = false;
 			a.game = g;
 			
 			g.agentWhite = a;
+		break;
+		
+		case gamemode.none:
+			var a = instance_create_depth(20, 20, 0, Agent);
+			a.isWhite = false;
+			a.game = g;
+			g.agentWhite = a;
+			
+			a = instance_create_depth(20, 20, 0, Agent);
+			a.isWhite = true;
+			a.game = g;
+			g.agentBlack = a;
+			
 		break
 	}
 }

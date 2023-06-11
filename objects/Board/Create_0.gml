@@ -16,8 +16,16 @@ flippedBoard = false;
 wasBoardJustFlipped = false;
 
 var off = (boardWidth div 2) * -squareWidth;
-boardX = room_width div 2 + off;
-boardY = room_height div 2 + off;
+boardRestingX = room_width div 2 + off;
+boardRestingY = room_height div 2 + off;
+
+boardX = boardRestingX;
+boardGoalY = boardRestingY;
+
+
+boardY = room_height*2;
+
+boardGoalYSpeed = 0;
 
 pieceOnBoardOffsetX = 9;
 pieceOnBoardOffsetY = 7;
@@ -52,6 +60,7 @@ validSquaresToMoveTo = ds_list_create();
 
 gameOverTime = 0;
 explodingCooldown = 0;
+gameOverTimeNoParticles = 0;
 
 // the attacksquares dictonary
 attackedSquares = ds_map_create();

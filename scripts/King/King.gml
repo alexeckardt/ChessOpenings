@@ -67,6 +67,11 @@ function King(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 				b[# rank, 3] = p;
 				
 				piece_depth_change_square(board, rank, 0, rank, 3);
+				//Update Reference Of Rook
+				var refList = board.piecesReference;
+				var rookInd = ds_list_find_index(refList, rank*8);
+				ds_list_delete(refList, rookInd);
+				ds_list_add(refList, rank*8 + 2);
 			}
 			
 			if (file - i == -2) { //kingside castle happened, rook exists
@@ -79,6 +84,12 @@ function King(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 				b[# rank, 7] = board.emptyPiece;
 				b[# rank, 5] = p;
 				piece_depth_change_square(board, rank, 7, rank, 5);
+				
+				//Update Reference Of Rook
+				var refList = board.piecesReference;
+				var rookInd = ds_list_find_index(refList, 7 + rank*8);
+				ds_list_delete(refList, rookInd);
+				ds_list_add(refList, 5 + rank*8);
 			}
 			
 		}

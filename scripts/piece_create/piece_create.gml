@@ -41,5 +41,8 @@ function piece_create(board, white, type, rank, file) {
 	var sqrr = col + row*8;
 	ds_list_add(board.piecesReference, sqrr);
 	
+	p.drawx = col*board.squareWidth;
+	p.drawy = row*board.squareWidth;
+	
 	return p;
 }

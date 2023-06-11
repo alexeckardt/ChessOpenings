@@ -10,10 +10,13 @@ function game_set_player_control(whiteToMove) {
 		case gamemode.free_play:
 			g.playerHasControl = true;break;
 			
-		case gamemode.as_black:
+		case gamemode.free_play_as_black:
 			g.playerHasControl = !whiteToMove;break;
 			
-		case gamemode.as_white:
+		case gamemode.free_play_as_white:
 			g.playerHasControl = whiteToMove;break;
+			
+		case gamemode.none:
+			g.playerHasControl = false;break;
 	}
 }

@@ -18,6 +18,9 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
     {"name":"Game","order":16,"path":"folders/Scripts/Game.yy",},
     {"name":"Agent","order":17,"path":"folders/Scripts/Agent.yy",},
+    {"name":"Meta","order":16,"path":"folders/Meta.yy",},
+    {"name":"Scripts","order":1,"path":"folders/Meta/Scripts.yy",},
+    {"name":"General","order":1,"path":"folders/Meta/Scripts/General.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"peice_add_legal_move_check_not_friendly","order":12,"path":"scripts/peice_add_legal_move_check_not_friendly/peice_add_legal_move_check_not_friendly.yy",},
@@ -34,6 +37,7 @@
     {"name":"piece_add_legal_move_king_castle","order":16,"path":"scripts/piece_add_legal_move_king_castle/piece_add_legal_move_king_castle.yy",},
     {"name":"King","order":8,"path":"scripts/King/King.yy",},
     {"name":"peice_add_legal_move_check_not_friendly_king","order":14,"path":"scripts/peice_add_legal_move_check_not_friendly_king/peice_add_legal_move_check_not_friendly_king.yy",},
+    {"name":"board_is_material_insufficient","order":21,"path":"scripts/board_is_material_insufficient/board_is_material_insufficient.yy",},
     {"name":"Bishop","order":5,"path":"scripts/Bishop/Bishop.yy",},
     {"name":"piece_check_would_be_pinned","order":10,"path":"scripts/piece_check_would_be_pinned/piece_check_would_be_pinned.yy",},
     {"name":"move_check_legal","order":7,"path":"scripts/move_check_legal/move_check_legal.yy",},

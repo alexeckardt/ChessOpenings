@@ -30,7 +30,7 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 		if 
 		(
 		piece_exists_at_coloured(board, i-1, j+dir, !w) || //Taking
-		(piece_exists_at_coloured(board, i-1, j+dir, w) && includeDefendingSquares) //Checking for Defence
+		(includeDefendingSquares) //Checking for Defence
 		) 
 		&& (piece_move_will_block_check(board, i-1, j+dir))
 			peice_add_legal_move_check(list_to_override, i-1, j+dir);
@@ -39,8 +39,9 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 		if 
 		(
 		piece_exists_at_coloured(board, i+1, j+dir, !w) || //Taking
-		(piece_exists_at_coloured(board, i+1, j+dir, w) && includeDefendingSquares) //Checking for Defence
+		(includeDefendingSquares) //Checking for Defence
 		) 
+		&& (piece_move_will_block_check(board, i+1, j+dir))
 			peice_add_legal_move_check(list_to_override, i+1, j+dir);
 			
 		//Take Enpassant

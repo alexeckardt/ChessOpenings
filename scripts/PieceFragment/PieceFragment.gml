@@ -49,9 +49,9 @@ function PieceFragment(_t, isWhite, sourcex, sourcey, _x, _y, _w, _h) constructo
 		
 	}
 	
-	static draw = function() {
+	static draw = function(xoff, yoff) {
 	
-		draw_sprite_part(spr, type, sprx, spry, sprw, sprh, floor(x), floor(y+z));
+		draw_sprite_part(spr, type, sprx, spry, sprw, sprh, floor(x+xoff), floor(y+z+yoff));
 	
 	}
 }

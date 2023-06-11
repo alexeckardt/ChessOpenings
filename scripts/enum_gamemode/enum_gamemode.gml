@@ -5,8 +5,12 @@
 enum gamemode {
 	
 	free_play,
-	as_white,
-	as_black,
+	free_play_as_white,
+	free_play_as_black,
+	none,
+	
+	openings_white,
+	openings_black,
 	
 	height
 
