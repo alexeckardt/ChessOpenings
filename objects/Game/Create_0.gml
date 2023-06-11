@@ -6,7 +6,7 @@ window_set_cursor(cr_none);
 
 //Setup Board with FEN
 defaultFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-test = "rnbqkbnr/pp2ppp1/2p4p/7Q/P3P3/BP2p3/2PP1PPP/RN2KBNR w KQkq -";
+test = "k7/2K5/8/8/8/8/1Q6/8 w KQkq -";
 
 myBoard = board_setup(test);
 
@@ -18,7 +18,13 @@ agentBlack = noone;
 playerHasControl = true;
 
 //
-//
+//Background
+bkgOff = 0;
+bkgSpeed = 0.1;
+backgroundSprite = sBackgroundLines;
+backgroundMix = 1;
 
-game_set_gamemode(gamemode.as_white);
+backgroundRedBlend = 0;
+
+game_set_gamemode(gamemode.free_play);
 game_set_player_control(myBoard.whiteToMove);

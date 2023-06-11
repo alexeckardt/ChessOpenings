@@ -1,8 +1,5 @@
 /// @description 
 
-//Scroll
-bkgOff = (bkgOff + bkgSpeed) % sprite_get_width(backgroundSprite);
-backgroundMix = lerp(backgroundMix, whiteToMove, 0.1);
 
 //Flip
 wasBoardJustFlipped = false;
@@ -31,7 +28,7 @@ if (flippedBoard) {
 	mouseSquareIndexY = (boardY + boardWidth*squareWidth - mouse_y) div squareWidth;	
 }
 
-var playerHasControl = Game.playerHasControl;
+var playerHasControl = Game.playerHasControl && !gameOver;
 
 
 //Grid
@@ -92,7 +89,6 @@ for (var square = 0; square < boardWidth*boardWidth; square++) {
 					
 				}
 				
-				
 				//Mark
 				pickedup = true;
 			}
@@ -142,36 +138,7 @@ if (pickedUpPiece != emptyPiece) {
 	
 			//Move
 			peice_move_to(pickedUpPiece, id, mouseSquareIndexX, mouseSquareIndexY);
-			
-			//Drop at Square
-			depthGrid[# 0, pCount] = squareid; //picked up "square" id
 
-
-			//
-			// Did move put king in check?
-			//
-			var map = attackedSquares;
-			ds_map_clear(map);
-			
-			board_get_all_attacked_squares(id, map, whiteToMove);
-			var kingSquareToCheck = (whiteToMove) ? blackKingSquare : whiteKingSquare;
-			kingInCheck = ds_map_exists(map, kingSquareToCheck);
-			
-			//
-			// Figure Out All Squares I Need to block
-			//
-			
-			// Go To Checkers
-			board_get_all_check_blockable_squares(id, checkBlockingSquares);
-			
-			//
-			// Finish Move
-			//
-			
-			//
-			whiteToMove = !whiteToMove;
-			playerHasControl = game_set_player_control(whiteToMove);
-			
 		} else {
 			
 			//Return
@@ -185,14 +152,15 @@ if (pickedUpPiece != emptyPiece) {
 		var relativej = (flippedBoard) ? 7-mouseSquareIndexY : mouseSquareIndexY;
 		pickedUpPiece.nooffsetDrawY = boardY + relativej*squareWidth + pieceOnBoardOffsetY;
 		
-		//
-		ds_list_clear(validSquaresToMoveTo);
 		
 		//End
 		pickedUpPiece.hoverAnimationCooldown = hoverAnimationCooldownOnDrop;
 		pickedUpPiece = emptyPiece;
 		
 		//
+		
+		board_check_for_gameover(id);
+		
 	}
 
 }
@@ -200,6 +168,3 @@ if (pickedUpPiece != emptyPiece) {
 
 //Sort gird. We then draw through the grid.
 ds_grid_sort(depthGrid, 1, true);
-
-//
-backgroundRedBlend = lerp(backgroundRedBlend, kingInCheck*0.4, 0.1);

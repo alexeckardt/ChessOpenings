@@ -29,8 +29,8 @@ function King(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 		
 		//
 		// Castle
-		piece_add_legal_move_king_castle(board, list_to_override, i, j, true);
-		piece_add_legal_move_king_castle(board, list_to_override, i, j, false);
+		piece_add_legal_move_king_castle(board, list_to_override, i, j, true, w);
+		piece_add_legal_move_king_castle(board, list_to_override, i, j, false, w);
 	}
 	
 	//

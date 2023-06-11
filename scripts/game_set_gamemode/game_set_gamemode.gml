@@ -23,14 +23,16 @@ function game_set_gamemode(mode) {
 		
 		case gamemode.as_black:
 			var a = instance_create_depth(20, 20, 0, Agent);
-			a.asWhite = true;
+			a.isWhite = true;
+			a.game = g;
 			
 			g.agentBlack = a;
 		break;
 		
 		case gamemode.as_white:
 			var a = instance_create_depth(20, 20, 0, Agent);
-			a.asWhite = false;
+			a.isWhite = false;
+			a.game = g;
 			
 			g.agentWhite = a;
 		break

@@ -9,7 +9,7 @@ function board_get_all_check_blockable_squares(board, mapToStore) {
 
 	//white just moved (but we haven't updated var yet), 
 	//so we find the black king positoin to get the blockign squares
-	var enemyKingSquare = (board.whiteToMove) ? blackKingSquare : whiteKingSquare;
+	var enemyKingSquare = (board.whiteToMove) ? board.blackKingSquare : board.whiteKingSquare;
 	var kingI = enemyKingSquare mod 8;
 	var kingJ = enemyKingSquare div 8;
 

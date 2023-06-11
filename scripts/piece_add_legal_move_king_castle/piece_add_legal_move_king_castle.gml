@@ -2,14 +2,15 @@
 //
 //
 //
-function piece_add_legal_move_king_castle(board, list, i, j, kingside) {
+function piece_add_legal_move_king_castle(board, list, i, j, kingside, white) {
 	
 	var castleKingSide = (white) ? board.whiteCastleKingside : board.blackCastleKingside;
 	var castleQueenSide = (white) ? board.whiteCastleQueenside : board.blackCastleQueenside;
 	var castleable = (kingside) ? castleKingSide : castleQueenSide;
+	castleable = castleable and (i == 4 && j == 7*!white); //ensure on the right square
 	
 	//Exit
-	if (!castleable && !board.kingInCheck) return false;
+	if (!castleable || board.kingInCheck) return false;
 	
 	var dir = (kingside) ? 1 : -1;
 	var dis = (kingside) ? 2 : 3;

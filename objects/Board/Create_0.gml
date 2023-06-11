@@ -1,11 +1,5 @@
 /// @description 
 
-bkgOff = 0;
-bkgSpeed = 0.1;
-backgroundSprite = sBackgroundLines;
-backgroundMix = 1;
-
-backgroundRedBlend = 0;
 
 //
 boardWidth = 8;
@@ -70,6 +64,10 @@ whiteKingSquare = -1;
 blackKingSquare = -1;
 
 kingInCheck = false;
+
+gameOver = false;
+stalemate = false;
+whiteIsWinner = false;
 
 //Debug
 drawDebug = true;
