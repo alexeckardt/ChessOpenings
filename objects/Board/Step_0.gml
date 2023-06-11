@@ -31,6 +31,8 @@ if (flippedBoard) {
 	mouseSquareIndexY = (boardY + boardWidth*squareWidth - mouse_y) div squareWidth;	
 }
 
+var playerHasControl = Game.playerHasControl;
+
 
 //Grid
 ds_grid_clear(depthGrid, emptyPiece);
@@ -62,7 +64,7 @@ for (var square = 0; square < boardWidth*boardWidth; square++) {
 		
 		//Pickup
 		var pickedup = false;
-		if (mouseSquareIndexX == i and mouseSquareIndexY == j && pickedUpPiece == emptyPiece) {
+		if (playerHasControl && mouseSquareIndexX == i and mouseSquareIndexY == j && pickedUpPiece == emptyPiece) {
 			
 			if (p.hoverAnimationCooldown < 0 && p.white == whiteToMove) {
 				yy += selectedPeiceYOffset;	
@@ -166,8 +168,9 @@ if (pickedUpPiece != emptyPiece) {
 			// Finish Move
 			//
 			
+			//
 			whiteToMove = !whiteToMove;
-			
+			playerHasControl = game_set_player_control(whiteToMove);
 			
 		} else {
 			

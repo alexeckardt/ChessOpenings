@@ -8,7 +8,7 @@ function board_setup(fen) {
 
 	//Force Board
 	if (!instance_exists(Board)) {
-		instance_create_depth(0, 0, 0, Board);	
+		instance_create_depth(0, 0, 10, Board);	
 	}
 
 	//Get Board
