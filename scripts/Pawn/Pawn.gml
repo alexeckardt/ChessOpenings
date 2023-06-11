@@ -17,12 +17,14 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 		var w = white;
 
 		//Forward
-		if (!piece_exists_at(board, i, j+dir)) && (piece_move_will_block_check(board, i, j+dir))
-			peice_add_legal_move_check(list_to_override, i, j+dir);
+		if (!includeDefendingSquares) {
+			if (!piece_exists_at(board, i, j+dir)) && (piece_move_will_block_check(board, i, j+dir))
+				peice_add_legal_move_check(list_to_override, i, j+dir);
 		
-		//First Move Double Take
-		if (!moved) && (!piece_exists_at(board, i, j+dir*2)) && (piece_move_will_block_check(board, i, j+dir*2))
-			peice_add_legal_move_check(list_to_override, i, j+dir*2);
+			//First Move Double Take
+			if (!moved) && (!piece_exists_at(board, i, j+dir*2)) && (piece_move_will_block_check(board, i, j+dir*2))
+				peice_add_legal_move_check(list_to_override, i, j+dir*2);
+		}
 		
 		//Take Left
 		if 
