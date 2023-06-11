@@ -6,7 +6,7 @@ window_set_cursor(cr_none);
 
 //Setup Board with FEN
 defaultFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-test = "k7/2K5/8/8/8/8/1Q6/8 w KQkq -";
+test = "k7/2K5/8/8/1p6/8/1Q6/8 w KQkq -";
 
 myBoard = board_setup(test);
 

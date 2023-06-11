@@ -165,6 +165,16 @@ if (pickedUpPiece != emptyPiece) {
 
 }
 
+var s = ds_list_size(particles);
+for (var parts = 0; parts < s; parts++) {
+	
+	//Get Info
+	var partData = particles[| parts];
+	if (!partData.stopUpdate) {
+		partData.update();
+	}
+	
+}
 
 //Sort gird. We then draw through the grid.
 ds_grid_sort(depthGrid, 1, true);

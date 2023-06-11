@@ -22,6 +22,9 @@ function peice_move_to(pieceStruct, board, toCol, toRow) {
 		board.boardShakeY = random_range(2, 3)*choose(-1, 0, 1);
 		
 		board.boardShakeAmount = 1;
+		var theDestroyedPiece = board.board[# toRow, toCol];
+		
+		theDestroyedPiece.explode(board);
 	}
 
 	//

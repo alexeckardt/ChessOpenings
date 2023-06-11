@@ -90,6 +90,21 @@ for (var pieceDraworder = 0; pieceDraworder < s; pieceDraworder++) {
 	draw_sprite_ext(p.mySprite, p.type, p.drawx + boardShakeX, p.drawy + boardShakeY, 1, 1, 0, pCol, 1);
 }
 
+//
+//
+// Draw the fucking particles
+//
+//
+var s = ds_list_size(particles);
+for (var parts = 0; parts < s; parts++) {
+	
+	//Get Info
+	var partData = particles[| parts];
+	partData.draw();
+	
+}
+
+
 if (drawDebug) {
 	draw_set_font(fontDebug);
 	draw_text(10, 10, mouseSquareIndexX);

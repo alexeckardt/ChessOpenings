@@ -37,6 +37,9 @@ boardShakeY = 0;
 mouseSquareIndexX = 0;
 mouseSquareIndexY = 0;
 
+// Particles
+particles = ds_list_create();
+
 
 //
 //
