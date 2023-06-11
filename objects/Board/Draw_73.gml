@@ -74,20 +74,25 @@ for (var pieceDraworder = 0; pieceDraworder < s; pieceDraworder++) {
 	
 	var p = piece_get_from_square(id, pieceAtSquare);
 	
-	if (p != -4 && pieceAtSquare != -1) {
+	//Ensure Exists
+	if (p != -4) { 
 		
-		var i = pieceAtSquare mod 8;
-		var j = pieceAtSquare div 8;
-		var lightSquare = (i%2 == (j+flippedBoard)%2);
-		var shadowCol = (lightSquare) ? darkSquareTop : lightSquareEdge;
+		//Draw Shadow
+		if (pieceAtSquare != -1) {
 		
-		//
-		draw_sprite_ext(sPieceShadow, 0, p.drawx + boardShakeX, p.nooffsetDrawY+boardShakeY, 1, 1, 0, shadowCol, 1);
-	}
+			var i = pieceAtSquare mod 8;
+			var j = pieceAtSquare div 8;
+			var lightSquare = (i%2 == (j+flippedBoard)%2);
+			var shadowCol = (lightSquare) ? darkSquareTop : lightSquareEdge;
+		
+			//
+			draw_sprite_ext(sPieceShadow, 0, p.drawx + boardShakeX, p.nooffsetDrawY+boardShakeY, 1, 1, 0, shadowCol, 1);
+		}
 	
-	//Draw
-	var pCol = merge_colour(c_white, c_red, p.checkBlend*0.4);
-	draw_sprite_ext(p.mySprite, p.type, p.drawx + boardShakeX, p.drawy + boardShakeY, 1, 1, 0, pCol, 1);
+		//Draw
+		var pCol = merge_colour(c_white, c_red, p.checkBlend*0.4);
+		draw_sprite_ext(p.mySprite, p.type, p.drawx + boardShakeX, p.drawy + boardShakeY, 1, 1, 0, pCol, 1);
+	}
 }
 
 //

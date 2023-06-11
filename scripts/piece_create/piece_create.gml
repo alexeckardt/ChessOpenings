@@ -37,5 +37,9 @@ function piece_create(board, white, type, rank, file) {
 	
 	// Place
 	board.board[# row, col] = p;
+	
+	var sqrr = col + row*8;
+	ds_list_add(board.piecesReference, sqrr);
+	
 	return p;
 }

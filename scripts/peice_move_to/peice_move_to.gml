@@ -7,6 +7,9 @@ function peice_move_to(pieceStruct, board, toCol, toRow) {
 	//Get old pos
 	var oldrank = pieceStruct.rank;
 	var oldfile = pieceStruct.file;
+	var oldsquare = oldfile + oldrank*8;
+	
+	var toSquare = toCol + toRow*8;
 	
 	//Draw little bounce
 	var dirMoved = point_direction(oldfile, oldrank, toCol, toRow);
@@ -25,10 +28,20 @@ function peice_move_to(pieceStruct, board, toCol, toRow) {
 		var theDestroyedPiece = board.board[# toRow, toCol];
 		
 		theDestroyedPiece.explode(board);
+		
+		//Remove the reference from this piece
+		ds_list_delete(board.piecesReference, ds_list_find_index(board.piecesReference, toSquare));
 	}
 
 	//
 	//
+	
+	//
+	
+	// Square References
+	ds_list_delete(board.piecesReference, ds_list_find_index(board.piecesReference, oldsquare));
+	ds_list_add(board.piecesReference, toSquare); //(Re)-add reference to new square
+
 	
 	// Update Position
 	board.board[# toRow, toCol] = pieceStruct;

@@ -30,7 +30,6 @@ if (flippedBoard) {
 
 var playerHasControl = Game.playerHasControl && !gameOver;
 
-
 //Grid
 ds_grid_clear(depthGrid, emptyPiece);
 
@@ -57,7 +56,7 @@ for (var square = 0; square < boardWidth*boardWidth; square++) {
 		//Animation
 		p.hoverAnimationCooldown--;
 		var glowRed = p.isChecker || (p.type == piece.king && p.white == whiteToMove && kingInCheck);
-		p.checkBlend = lerp(p.checkBlend, glowRed, 0.2);
+		p.checkBlend = lerp(p.checkBlend, glowRed && !gameOver, 0.2);
 		
 		//Pickup
 		var pickedup = false;
@@ -165,6 +164,47 @@ if (pickedUpPiece != emptyPiece) {
 
 }
 
+if (gameOver) {
+	gameOverTime++;
+	
+	if (gameOverTime > room_speed*0.5) {
+		
+		//Start Blowing Up Peices
+		if (--explodingCooldown <= 0) {
+		
+			explodingCooldown = room_speed / 2;
+		
+			//Grab a reference.
+			// We no longer need references, so let's throw them all out, so no recycle
+			
+			var p = -1;
+			while (p == -1 && ds_list_size(piecesReference) > 0) {
+				
+				var pos = irandom(ds_list_size(piecesReference)-1);
+				var pp = piecesReference[| pos];
+				var testPeice = piece_get_from_square(id, pp);
+	
+				//pop
+				ds_list_delete(piecesReference, pos);
+				
+				//Choose to destroy
+				if (testPeice.white == !whiteIsWinner || stalemate) {
+					p = testPeice;	
+				}
+			}
+			
+			//Check we got one
+			if (p != -1) {
+				p.explode(id);
+				board[# p.rank, p.file] = emptyPiece
+				delete p;
+			}
+		}
+	}
+}
+
+
+
 var s = ds_list_size(particles);
 for (var parts = 0; parts < s; parts++) {
 	
@@ -172,6 +212,17 @@ for (var parts = 0; parts < s; parts++) {
 	var partData = particles[| parts];
 	if (!partData.stopUpdate) {
 		partData.update();
+	} else {
+		partData.lifeLeft--;
+		
+		//End
+		if (partData.lifeLeft < 0) {
+			ds_list_delete(particles, parts)
+			s--;
+			parts--;
+			
+			delete partData;
+		}
 	}
 	
 }

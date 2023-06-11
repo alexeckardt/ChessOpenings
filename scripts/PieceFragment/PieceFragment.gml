@@ -21,9 +21,10 @@ function PieceFragment(_t, isWhite, sourcex, sourcey, _x, _y, _w, _h) constructo
 	ySpeed = random(0.5)*choose(-1, 1);
 	zSpeed = random_range(5, 2);
 	
-	bounce = random_range(0.4, 0.7);
+	bounce = random_range(0.3, 0.5);
 
 	stopUpdate = false;
+	lifeLeft = random_range(0.7, 1.3)*room_speed;
 
 	//
 	static update = function() {

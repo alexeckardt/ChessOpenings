@@ -36,6 +36,8 @@ function board_setup(fen) {
 	ds_list_clear(b.validSquaresToMoveTo);
 	ds_list_clear(b.piecesCheckingKing);
 	ds_map_clear(b.checkBlockingSquares);
+	ds_list_clear(b.particles);
+	ds_list_clear(b.piecesReference);
 	
 	
 	

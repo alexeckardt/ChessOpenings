@@ -50,10 +50,15 @@ depthGrid = ds_grid_create(2, 64);
 
 validSquaresToMoveTo = ds_list_create();
 
+gameOverTime = 0;
+explodingCooldown = 0;
+
 // the attacksquares dictonary
 attackedSquares = ds_map_create();
 piecesCheckingKing = ds_list_create(); //Store
 checkBlockingSquares = ds_map_create();
+
+piecesReference = ds_list_create();
 
 // Game State
 whiteToMove = true;
@@ -71,6 +76,7 @@ kingInCheck = false;
 gameOver = false;
 stalemate = false;
 whiteIsWinner = false;
+
 
 //Debug
 drawDebug = true;
