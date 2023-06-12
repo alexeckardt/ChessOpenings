@@ -36,7 +36,7 @@ function Rook(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 		
 		if (!moved) {
 			moved = (i != file || j != rank);
-			board.enpassantsquare = -1;
+			board.enpassantSquare = -1;
 			
 			if (white) {
 				if (kingside) {

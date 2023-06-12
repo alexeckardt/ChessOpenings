@@ -9,6 +9,8 @@ function Piece(myBoard, _white, _i, _j) constructor {
 	
 	file = _i; // i pos, the letter
 	rank = _j; // j pos, the number
+	startingfile = _i;
+	startingrank = _j;
 	
 	//Get
 	mySprite = (white) ? sPiecesWhite : sPiecesBlack;
@@ -18,7 +20,7 @@ function Piece(myBoard, _white, _i, _j) constructor {
 	drawy = 0;
 	nooffsetDrawY = 0; // for shadow position
 	
-	moved = false; //for pawns and castling
+	moveCounter = 0;
 	
 	hoverAnimationCooldown = -1;
 	
@@ -31,15 +33,21 @@ function Piece(myBoard, _white, _i, _j) constructor {
 	//
 	//
 	static move = function (j, i) {
-		if (!moved) {
-			moved = (i != file || j != rank);
-			board.enpassantsquare = -1;
-		}
-			
+		//override
+		globalMove(j, i);
+	};
+	
+	static globalMove = function(j, i) {
+
+
+		// Move Counter update in make / undo
+
+		//Push
 		file = i;
 		rank = j;
+		board.enpassantSquare = -1; //Set in pawn's move
 		
-	};
+	}
 	
 	//
 	// override

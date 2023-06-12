@@ -48,16 +48,14 @@ function board_setup(fen) {
 	//
 	
 	//Positions
-	var filePlacingOn = 0; //a
-	var rankPlacingOn = 7; //starts on 8th rank
+	var squarePlacingIn = 0;
 	
 	while (true) {
 		
+
 		//Get chr
 		char = string_char_at(fen, stringpos);
 		stringpos++;
-		
-		var squareId = (7-rankPlacingOn)*8 + filePlacingOn;
 		
 		//Switch Based on current char
 		switch (ord(char)) {
@@ -66,18 +64,20 @@ function board_setup(fen) {
 			default: 
 				var spaces = ord(char) - 49; //48 is the char below 1. thus, if we get 1, we have 49 - 49 = 0
 										// where ord("1") is 49. We make it 0, as we add one after the switch statement.
-										
-				filePlacingOn += spaces;
-			break;
+				
+				squarePlacingIn += spaces;break;
 			
 			// Go to next rank
 			case fen_notation.end_rank:
-				filePlacingOn = 8; //Force Next Rank
+				if (squarePlacingIn mod 8 != 0) //Force Next Rank, but not if empty rank
+					squarePlacingIn += 8 - (squarePlacingIn mod 8); 
+				else
+					squarePlacingIn--; //will reincrement
 			break;
 			
 			//Force Exit Entirely
 			case fen_notation.section_divider: // the space
-				rankPlacingOn = -1;
+				squarePlacingIn = 64;
 				break;
 			
 			//
@@ -85,58 +85,52 @@ function board_setup(fen) {
 			//
 			
 			case fen_notation.black_rook:
-				piece_create(b, false, piece.rook, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, false, piece.rook, squarePlacingIn);break;
 			
 			case fen_notation.black_knight:
-				piece_create(b, false, piece.knight, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, false, piece.knight, squarePlacingIn);break;
 			
 			case fen_notation.black_bishop:
-				piece_create(b, false, piece.bishop, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, false, piece.bishop, squarePlacingIn);break;
 			
 			case fen_notation.black_queen:
-				piece_create(b, false, piece.queen, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, false, piece.queen, squarePlacingIn);break;
 			
 			case fen_notation.black_king:
-				piece_create(b, false, piece.king, rankPlacingOn, filePlacingOn);
-				b.blackKingSquare = squareId;
+				piece_create(b, false, piece.king, squarePlacingIn);
+				b.blackKingSquare = squarePlacingIn;
 				break;
 			
 			case fen_notation.black_pawn:
-				piece_create(b, false, piece.pawn, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, false, piece.pawn, squarePlacingIn);break;
 			
 			
 			case fen_notation.white_pawn:
-				piece_create(b, true, piece.pawn, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, true, piece.pawn, squarePlacingIn);break;
 			
 			case fen_notation.white_rook:
-				piece_create(b, true, piece.rook, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, true, piece.rook, squarePlacingIn);break;
 			
 			case fen_notation.white_knight:
-				piece_create(b, true, piece.knight, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, true, piece.knight, squarePlacingIn);break;
 			
 			case fen_notation.white_bishop:
-				piece_create(b, true, piece.bishop, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, true, piece.bishop, squarePlacingIn);break;
 			
 			case fen_notation.white_queen:
-				piece_create(b, true, piece.queen, rankPlacingOn, filePlacingOn);break;
+				piece_create(b, true, piece.queen, squarePlacingIn);break;
 			
 			case fen_notation.white_king:
-				piece_create(b, true, piece.king, rankPlacingOn, filePlacingOn);
-				b.whiteKingSquare = squareId;
+				piece_create(b, true, piece.king, squarePlacingIn);
+				b.whiteKingSquare = squarePlacingIn;
 				break;
 		}
 		
 		//Add
-		filePlacingOn++;
-		
-		//Check Exit/ Next Rank Condition
-		if (filePlacingOn >= 9) {
-			filePlacingOn = 0; //back to the a file
-			rankPlacingOn--;
-		}
+		squarePlacingIn++;
 		
 		//Exit
-		if (rankPlacingOn <= -1) {
+		if (squarePlacingIn >= 64) {
 			break;	
 		}
 		
@@ -215,13 +209,13 @@ function board_setup(fen) {
 	char = string_char_at(fen, stringpos);
 	
 	// Enpassant is allowed
-	b.enpassantsquare = -1;
+	b.enpassantSquare = -1;
 	if (ord(char) != fen_notation.enpassant_no_rights) {
 	
 		var sid = char;
 		sid += string_char_at(fen, ++stringpos);
 		
-		b.enpassantsquare = square_number_from_id(sid);
+		b.enpassantSquare = square_number_from_id(sid);
 	}
 	stringpos++; //skip the space
 	

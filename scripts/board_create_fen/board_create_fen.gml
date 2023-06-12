@@ -57,7 +57,7 @@ function board_create_fen(board) {
 	
 	//
 	// Enpassant Square
-	fen += " " + square_id_from_number(board.enpassantsquare);
+	fen += " " + square_id_from_number(board.enpassantSquare);
 	
 	//
 	//

@@ -22,7 +22,7 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 				peice_add_legal_move_check(list_to_override, i, j+dir);
 		
 			//First Move Double Take
-			if (!moved) && (!piece_exists_at(board, i, j+dir*2)) && (piece_move_will_block_check(board, i, j+dir*2))
+			if (firstMovedOnTurn <= board.turnNumber) && (!piece_exists_at(board, i, j+dir*2)) && (piece_move_will_block_check(board, i, j+dir*2))
 				peice_add_legal_move_check(list_to_override, i, j+dir*2);
 		}
 		
@@ -45,9 +45,9 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 			peice_add_legal_move_check(list_to_override, i+1, j+dir);
 			
 		//Take Enpassant
-		if (i+1 + (j+dir)*8 == board.enpassantsquare) 
+		if (i+1 + (j+dir)*8 == board.enpassantSquare) 
 			peice_add_legal_move_check_not_friendly(board, list_to_override, i+1, j+dir, w, includeDefendingSquares); //incase
-		if (i-1 + (j+dir)*8 == board.enpassantsquare)
+		if (i-1 + (j+dir)*8 == board.enpassantSquare)
 			peice_add_legal_move_check_not_friendly(board, list_to_override, i-1, j+dir, w, includeDefendingSquares); //incase
 		
 		//Force Pin?
@@ -62,20 +62,16 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 	// override
 	static move = function(j, i) {
 		
-		if (!moved) {
-			moved = (i != file || j != rank);
-			board.enpassantsquare = -1;
-		}
-		
-		if (abs(rank - j) == 2) {
+		var oldRank = rank
+		globalMove(j, i);
+
+
+		if (abs(oldRank - j) == 2) {
 			var theSkippedSquare = j - (j-rank) div 2;
-			board.enpassantsquare = i + theSkippedSquare*8; 
+			board.enpassantSquare = i + theSkippedSquare*8; 
 		} else  {
-			board.enpassantsquare = -1;	
+			board.enpassantSquare = -1;	
 		}
-		
-		file = i;
-		rank = j;
 	}
 	
 }

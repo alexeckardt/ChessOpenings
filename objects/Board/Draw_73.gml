@@ -93,6 +93,7 @@ for (var pieceDraworder = 0; pieceDraworder < s; pieceDraworder++) {
 		//Draw
 		var pCol = merge_colour(c_white, c_red, p.checkBlend*0.4);
 		draw_sprite_ext(p.mySprite, p.type, p.drawx+boardShakeX+boardX, p.drawy+boardShakeY+boardY, 1, 1, 0, pCol, 1);
+		draw_text_colour(p.drawx+boardShakeX+boardX - 5, p.drawy+boardShakeY+boardY - 15, p.moveCounter, c_red,c_red,c_red,c_red,1);
 	}
 }
 
@@ -113,6 +114,5 @@ for (var parts = 0; parts < s; parts++) {
 
 if (drawDebug) {
 	draw_set_font(fontDebug);
-	draw_text(10, 10, mouseSquareIndexX);
-	draw_text(20, 10, mouseSquareIndexY);
+	draw_text(10, 10, turnNumber);
 }

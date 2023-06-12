@@ -2,47 +2,47 @@
 //
 //
 //
-function piece_create(board, white, type, rank, file) {
+function piece_create(board, white, type, squareid) {
 
 	//
 	// TODO: Switch
 	var p;
 	
 	// To make the grid look like the board
-	var row = 7 - rank;
-	var col = file;
+	var file = squareid mod 8;
+	var rank = squareid div 8;
 	
 	switch (type) {
 		default:
 		case piece.pawn:
-			p = new Pawn(board, white, file, row);break;
+			p = new Pawn(board, white, file, rank);break;
 			
 		case piece.knight:
-			p = new Knight(board, white, file, row);break;
+			p = new Knight(board, white, file, rank);break;
 			
 		case piece.bishop:
-			p = new Bishop(board, white, file, row);break;
+			p = new Bishop(board, white, file, rank);break;
 			
 		case piece.rook:
-			p = new Rook(board, white, file, row);
-			p.kingside = (col == 7);
+			p = new Rook(board, white, file, rank);
+			p.kingside = (file == 7);
 			break;
 			
 		case piece.queen:
-			p = new Queen(board, white, file, row);break;
+			p = new Queen(board, white, file, rank);break;
 			
 		case piece.king:
-			p = new King(board, white, file, row);break;
+			p = new King(board, white, file, rank);break;
 	}
 	
 	// Place
-	board.board[# row, col] = p;
+	board.board[# rank, file] = p;
 	
-	var sqrr = col + row*8;
-	ds_list_add(board.piecesReference, sqrr);
+	//Add Reference
+	ds_list_add(board.piecesReference, squareid);
 	
-	p.drawx = col*board.squareWidth;
-	p.drawy = row*board.squareWidth;
+	p.drawx = file*board.squareWidth;
+	p.drawy = rank*board.squareWidth;
 	
 	return p;
 }

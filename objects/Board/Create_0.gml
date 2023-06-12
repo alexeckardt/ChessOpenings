@@ -70,12 +70,13 @@ checkBlockingSquares = ds_map_create();
 piecesReference = ds_list_create();
 
 // Game State
+turnNumber = 0;
 whiteToMove = true;
 blackCastleKingside = true;
 blackCastleQueenside = true;
 whiteCastleKingside = true;
 whiteCastleQueenside = true;
-enpassantsquare = -1;
+enpassantSquare = -1;
 
 whiteKingSquare = -1;
 blackKingSquare = -1;
