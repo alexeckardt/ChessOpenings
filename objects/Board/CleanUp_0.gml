@@ -8,3 +8,5 @@ ds_list_destroy(piecesCheckingKing);
 ds_list_destroy(particles);
 ds_list_destroy(piecesReference);
 ds_map_destroy(checkBlockingSquares);
+
+ds_stack_destroy(movesStack);

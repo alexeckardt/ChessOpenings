@@ -11,6 +11,7 @@ enum piece {
 	queen,
 	king,
 	
+	none,
 	height
 
 }

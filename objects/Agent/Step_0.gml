@@ -21,13 +21,11 @@ if (instance_exists(board)) {
 			var move = movesList[| moveMaking];
 	
 			// Move
-			agent_make_move(move, board);
+			board_make_move(board, move);
 	
 			//
 			//Check fro Game over
 			//
-			board_check_for_gameover(board);
-		
 			thinkingTimeLeft = random_range(minThinkingTime, maxThinkingTime);
 		
 		}

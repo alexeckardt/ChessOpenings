@@ -8,6 +8,10 @@ if (keyboard_check_pressed(vk_space)) {
 	wasBoardJustFlipped = true;
 }
 
+if (keyboard_check_pressed(ord("Z"))) {
+	board_undo_move(board);
+}
+
 //
 //
 boardShakeAmount = lerp(boardShakeAmount, 0, 0.05);
@@ -141,8 +145,9 @@ if (pickedUpPiece != emptyPiece) {
 		//Check if Valid Move
 		if (move_check_legal(squareid)) {
 	
-			//Move
-			peice_move_to(pickedUpPiece, id, mouseSquareIndexX, mouseSquareIndexY);
+			var fromSquare = pickedUpPiece.file + pickedUpPiece.rank*8;
+			var move = new AgentMove(fromSquare, squareid);
+			board_make_move(id, move);
 
 		} else {
 			

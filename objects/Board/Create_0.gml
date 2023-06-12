@@ -86,6 +86,9 @@ gameOver = false;
 stalemate = false;
 whiteIsWinner = false;
 
-
 //Debug
 drawDebug = true;
+
+//
+//
+movesStack = ds_stack_create();

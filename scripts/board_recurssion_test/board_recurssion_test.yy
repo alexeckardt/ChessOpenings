@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "agent_make_move",
+  "name": "board_recurssion_test",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Agent",
-    "path": "folders/Scripts/Agent.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
 }
