@@ -2,12 +2,13 @@
 //
 //
 //
-function board_make_move(board, agentMove) {
+function board_make_move(board, agentMove, simulated = false) {
 	
 	//Get Piece
 	var p = piece_get_from_square(board, agentMove.from);
-	if (pickedUpPiece != -1)
+	if (pickedUpPiece != board.emptyPiece)
 		p = pickedUpPiece;
+
 	
 	//store for undos
 	var pTaking = piece_get_from_square(board, agentMove.to);
@@ -15,16 +16,17 @@ function board_make_move(board, agentMove) {
 		agentMove.pieceTakeType = pTaking.type;
 		agentMove.pieceTakeColor= pTaking.white;
 		agentMove.pMoveCounter = pTaking.moveCounter;
-		agentMove.enpassantSquare = board.enpassantSquare;
 	}
+	//Board Data
+	agentMove.enpassantSquare = board.enpassantSquare;
+	
 	
 	//Do it
-	peice_move_to_square(p, board, agentMove.to);
+	peice_move_to_square(p, board, agentMove.to, simulated);
 	p.moveCounter++;
 	
 	ds_stack_push(board.movesStack, agentMove);
 	board.turnNumber = ds_stack_size(board.movesStack);
-	show_debug_message(board.turnNumber);
 	
 	board_check_for_gameover(board);
 }

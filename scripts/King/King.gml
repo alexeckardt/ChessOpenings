@@ -37,9 +37,7 @@ function King(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 	// override
 	static move = function(j, i) {
 		
-		if (!moved) {
-			moved = (i != file || j != rank);
-			board.enpassantSquare = -1;
+		if (moveCounter == 0) {
 			
 			if (white) {
 				board.whiteCastleKingside = false;
@@ -94,15 +92,14 @@ function King(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 			
 		}
 		
-		file = i;
-		rank = j;
-		
 		// Store for fast Check lookup
 		if (white) {
 			board.whiteKingSquare = i+j*8;	
 		} else {
 			board.blackKingSquare = i+j*8;
 		}
+		
+		globalMove(j, i);
 	}
 	
 }

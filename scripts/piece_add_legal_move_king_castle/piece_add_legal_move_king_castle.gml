@@ -4,9 +4,16 @@
 //
 function piece_add_legal_move_king_castle(board, list, i, j, kingside, white) {
 	
-	var castleKingSide = (white) ? board.whiteCastleKingside : board.blackCastleKingside;
-	var castleQueenSide = (white) ? board.whiteCastleQueenside : board.blackCastleQueenside;
-	var castleable = (kingside) ? castleKingSide : castleQueenSide;
+	var castleSide = (kingside) ? 7 : 0;
+	var rookCastleable = false;
+	if (piece_exists_at_coloured(board, castleSide, j, white)) {
+		var rookExits = (board.board[# j, castleSide].type == piece.rook); 	
+		if (rookExits) {
+			rookCastleable = board.board[# j, castleSide].moveCounter == 0;
+		}
+	}
+	
+	var castleable = moveCounter == 0 && rookCastleable;
 	var startingSquare = (white) ? 60 : 4;
 	castleable = castleable and (i +j*8 == startingSquare); //ensure on the right square
 	

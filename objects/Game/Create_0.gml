@@ -6,9 +6,9 @@ window_set_cursor(cr_none);
 
 //Setup Board with FEN
 defaultFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-test = "k7/2K5/8/8/1p6/8/1Q6/8 w KQkq -";
+test = "rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RKBQK2R w KQkq - 1 8";
 
-myBoard = board_setup(defaultFEN);
+myBoard = board_setup(test);
 
 gameMode = gamemode.free_play;
 agentWhite = noone;

@@ -22,7 +22,7 @@ function Pawn(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 				peice_add_legal_move_check(list_to_override, i, j+dir);
 		
 			//First Move Double Take
-			if (firstMovedOnTurn <= board.turnNumber) && (!piece_exists_at(board, i, j+dir*2)) && (piece_move_will_block_check(board, i, j+dir*2))
+			if (moveCounter == 0) && (!piece_exists_at(board, i, j+dir*2)) && (piece_move_will_block_check(board, i, j+dir*2))
 				peice_add_legal_move_check(list_to_override, i, j+dir*2);
 		}
 		

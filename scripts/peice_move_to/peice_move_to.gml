@@ -2,7 +2,7 @@
 //
 //
 //
-function peice_move_to(pieceStruct, board, toCol, toRow) {
+function peice_move_to(pieceStruct, board, toCol, toRow, simulated = false) {
 
 	//Get old pos
 	var oldrank = pieceStruct.rank;
@@ -11,23 +11,24 @@ function peice_move_to(pieceStruct, board, toCol, toRow) {
 	
 	var toSquare = toCol + toRow*8;
 	
-	//Draw little bounce
-	var dirMoved = point_direction(oldfile, oldrank, toCol, toRow);
-	var disMoved = min(3, point_distance(oldfile, oldrank, toCol, toRow) / 1.5);
+	if (!simulated) {
+		//Draw little bounce
+		var dirMoved = point_direction(oldfile, oldrank, toCol, toRow);
+		var disMoved = min(3, point_distance(oldfile, oldrank, toCol, toRow) / 1.5);
 			
-	pieceStruct.drawHSpeed = lengthdir_x(disMoved, dirMoved);
-	pieceStruct.drawVSpeed = lengthdir_y(disMoved, dirMoved) - 2;
-
+		pieceStruct.drawHSpeed = lengthdir_x(disMoved, dirMoved);
+		pieceStruct.drawVSpeed = lengthdir_y(disMoved, dirMoved) - 2;
+	}
+	
 	// DESTROY If some other peice exists there
-
 	if (piece_exists_at(board, toCol, toRow)) {
-		board.boardShakeX = random_range(2, 3)*choose(-1, 0, 1);
-		board.boardShakeY = random_range(2, 3)*choose(-1, 0, 1);
-		
-		board.boardShakeAmount = 1;
-		var theDestroyedPiece = board.board[# toRow, toCol];
-		
-		theDestroyedPiece.explode(board);
+		if (!simulated) {
+			board.boardShakeX = random_range(2, 3)*choose(-1, 0, 1);
+			board.boardShakeY = random_range(2, 3)*choose(-1, 0, 1);
+			board.boardShakeAmount = 1;
+			var theDestroyedPiece = board.board[# toRow, toCol];
+			theDestroyedPiece.explode(board);
+		}
 		
 		//Remove the reference from this piece
 		ds_list_delete(board.piecesReference, ds_list_find_index(board.piecesReference, toSquare));

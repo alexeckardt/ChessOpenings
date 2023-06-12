@@ -34,10 +34,7 @@ function Rook(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 	// override
 	static move = function(j, i) {
 		
-		if (!moved) {
-			moved = (i != file || j != rank);
-			board.enpassantSquare = -1;
-			
+		if (moveCounter == 0) {
 			if (white) {
 				if (kingside) {
 					board.whiteCastleKingside = false;
@@ -55,8 +52,7 @@ function Rook(board, _white, _i, _j) : Piece(board, _white, _i, _j) constructor 
 			
 		}
 		
-		file = i;
-		rank = j;
+		globalMove(j, i);
 	}
 	
 }

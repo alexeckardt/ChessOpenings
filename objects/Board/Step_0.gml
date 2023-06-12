@@ -2,10 +2,14 @@
 
 
 //Flip
-wasBoardJustFlipped = false;
+//wasBoardJustFlipped = false;
 if (keyboard_check_pressed(vk_space)) {
-	flippedBoard = !flippedBoard;	
-	wasBoardJustFlipped = true;
+	//flippedBoard = !flippedBoard;	
+	//wasBoardJustFlipped = true;
+	
+	for (var i = 1; i < 4; i++) {
+		show_debug_message(string(i) + ":" + string(board_recurssion_test(id, i)));
+	}
 }
 
 if (keyboard_check_pressed(ord("Z"))) {
@@ -26,8 +30,6 @@ if (boardShakeAmount > 0.01) {
 //
 // Move Board
 boardY = lerp(boardY, boardGoalY, 0.2);
-
-
 
 //
 // Get Mouse Position
