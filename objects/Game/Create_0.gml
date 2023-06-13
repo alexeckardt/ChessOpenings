@@ -35,3 +35,5 @@ winnerColStale = c_black;
 
 game_set_gamemode(gamemode.free_play);
 game_set_player_control(myBoard.whiteToMove);
+
+generate_opening_trie();

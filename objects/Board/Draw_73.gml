@@ -37,69 +37,16 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 		col = (lightSquare) ? lightSquareEdge : darkSquareEdge;
 		draw_sprite_ext(sBoardSquare, 1, xx, yy, 1, 1, 0, col, 1);	
 	}
-	
-	//
-	// Is a valid move? / highlight squares
-	//
-	if (pickedUpPiece != emptyPiece) {
-		var pickedPieceOrigin = (i == pickedUpPiece.file && j == pickedUpPiece.rank)
-		if (ds_list_find_index(validSquaresToMoveTo, sqrr) != -1 || pickedPieceOrigin) {
-			
-			// Highlight Square
-			var highlightSquare = (mouseSquareIndexX == i && mouseSquareIndexY == j)
-			if (highlightSquare) {
-				gpu_set_blendmode(bm_add);
-				gpu_set_fog(1, c_white, 0, 0);
-				draw_sprite_ext(sBoardSquare, 0, xx, yy, 1, 1, 0, col, 0.2);
-				gpu_set_fog(0, 0, 0, 0);
-				gpu_set_blendmode(bm_normal);
-			}
-			
-			var index = piece_exists_at(id, i, j) || pickedPieceOrigin;
-			draw_sprite_ext(sBoardValidMove, index, xx, yy, 1, 1, 0, shadowCol, 1);	
-		
-		}
-	}
 }
 
 //
 // Draw Peices
 //
 
-var s = ds_grid_height(depthGrid);
-for (var pieceDraworder = 0; pieceDraworder < s; pieceDraworder++) {
-	
-	//Get Info
-	var pieceAtSquare = depthGrid[# 0, pieceDraworder];
-	if (pieceAtSquare == emptyPiece) continue;
-	
-	var p = piece_get_from_square(id, pieceAtSquare);
-	
-	//Ensure Exists
-	if (p != -4) { 
-		
-		//Draw Shadow
-		if (pieceAtSquare != -1) {
-		
-			var i = pieceAtSquare mod 8;
-			var j = pieceAtSquare div 8;
-			var lightSquare = (i%2 == (j+flippedBoard)%2);
-			var shadowCol = (lightSquare) ? darkSquareTop : lightSquareEdge;
-		
-			//
-			draw_sprite_ext(sPieceShadow, 0, p.drawx+boardShakeX+boardX, p.nooffsetDrawY+boardShakeY+boardY, 1, 1, 0, shadowCol, 1);
-		}
-	
-		//Draw
-		var pCol = merge_colour(c_white, c_red, p.checkBlend*0.4);
-		draw_sprite_ext(p.mySprite, p.type, p.drawx+boardShakeX+boardX, p.drawy+boardShakeY+boardY, 1, 1, 0, pCol, 1);
-		draw_text_colour(p.drawx+boardShakeX+boardX - 5, p.drawy+boardShakeY+boardY - 15, p.moveCounter, c_red,c_red,c_red,c_red,1);
-	}
-}
 
 //
 //
-// Draw the fucking particles
+// Draw the particles
 //
 //
 var s = ds_list_size(particles);

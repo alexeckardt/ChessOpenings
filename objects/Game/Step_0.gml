@@ -17,7 +17,6 @@ if (keyboard_check_pressed(ord("C"))) {
 	defaultFEN = board_create_fen(b);
 }
 
-
 //Background
 bkgOff = (bkgOff + bkgSpeed) % sprite_get_width(backgroundSprite);
 
