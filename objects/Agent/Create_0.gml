@@ -9,4 +9,4 @@ minThinkingTime = room_speed/4;
 thinkingTimeLeft = 0;
 
 game = noone; //set on game creation
-movesList = ds_list_create();
+myMovesList = ds_list_create();

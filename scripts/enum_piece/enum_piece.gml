@@ -2,7 +2,7 @@
 //
 //
 //
-enum peice {
+enum piece {
 		
 	none = -1,
 	

@@ -25,21 +25,16 @@ function board_setup(fen) {
 	//
 	//
 	
-	for (var sqrr = 0; sqrr < 64; sqrr++) {
-		if (piece_exists_at(b, sqrr mod 8, sqrr div 8)) {
-			delete b.board[# sqrr mod 8, sqrr div 8];
-		}
-	}	
-	ds_grid_clear(b.depthGrid, b.emptyPiece);
-	ds_grid_clear(b.board,b.emptyPiece);
-	ds_map_clear(b.attackedSquares);
-	ds_list_clear(b.validSquaresToMoveTo);
-	ds_list_clear(b.piecesCheckingKing);
-	ds_map_clear(b.checkBlockingSquares);
-	ds_list_clear(b.particles);
-	ds_list_clear(b.piecesReference);
-	
-	
+	//Empty
+	for (var i = 0; i < array_length(b.board); i++) {
+		b.board[i] = piece.none;	
+	}
+	b.board[b.whiteToPlaySquare] = false;
+	b.board[b.enpassantSquarePos] = -1;
+	b.board[b.blackCastleKingPos] = false;
+	b.board[b.blackCastleQueenPos] = false;
+	b.board[b.whiteCastleKingPos] = false;
+	b.board[b.whiteCastleQueenPos] = false;
 	
 	//
 	//
@@ -51,7 +46,6 @@ function board_setup(fen) {
 	var squarePlacingIn = 0;
 	
 	while (true) {
-		
 
 		//Get chr
 		char = string_char_at(fen, stringpos);
@@ -85,45 +79,41 @@ function board_setup(fen) {
 			//
 			
 			case fen_notation.black_rook:
-				piece_create(b, false, piece.rook, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.black_rook;break;
 			
 			case fen_notation.black_knight:
-				piece_create(b, false, piece.knight, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.black_knight;break;
 			
 			case fen_notation.black_bishop:
-				piece_create(b, false, piece.bishop, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.black_bishop;break;
 			
 			case fen_notation.black_queen:
-				piece_create(b, false, piece.queen, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.black_queen;break;
 			
 			case fen_notation.black_king:
-				piece_create(b, false, piece.king, squarePlacingIn);
-				b.blackKingSquare = squarePlacingIn;
-				break;
+				b.board[squarePlacingIn] = piece.black_king;break;
 			
 			case fen_notation.black_pawn:
-				piece_create(b, false, piece.pawn, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.black_pawn;break;
 			
 			
 			case fen_notation.white_pawn:
-				piece_create(b, true, piece.pawn, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.white_pawn;break;
 			
 			case fen_notation.white_rook:
-				piece_create(b, true, piece.rook, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.white_rook;break;
 			
 			case fen_notation.white_knight:
-				piece_create(b, true, piece.knight, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.white_knight;break;
 			
 			case fen_notation.white_bishop:
-				piece_create(b, true, piece.bishop, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.white_bishop;break;
 			
 			case fen_notation.white_queen:
-				piece_create(b, true, piece.queen, squarePlacingIn);break;
+				b.board[squarePlacingIn] = piece.white_queen;break;
 			
 			case fen_notation.white_king:
-				piece_create(b, true, piece.king, squarePlacingIn);
-				b.whiteKingSquare = squarePlacingIn;
-				break;
+				b.board[squarePlacingIn] = piece.white_king;break;
 		}
 		
 		//Add
@@ -147,10 +137,10 @@ function board_setup(fen) {
 	
 	switch (ord(char)) {
 		case fen_notation.to_move_white: 
-			b.whiteToMove = true;
+			b.board[b.whiteToPlaySquare] = true;
 		break;
 		case fen_notation.to_move_black:
-			b.whiteToMove = false;
+			b.board[b.whiteToPlaySquare] = false;
 		break;
 		
 		default:
@@ -161,12 +151,6 @@ function board_setup(fen) {
 	// 3: Castling Rights
 	//
 	var done = false;
-	
-	//Force
-	b.blackCastleKingside = false;
-	b.blackCastleQueenside = false;
-	b.whiteCastleKingside = false;
-	b.whiteCastleQueenside = false;
 	
 	//Loop
 	while (!done) {
@@ -188,16 +172,16 @@ function board_setup(fen) {
 				break;
 				
 			case fen_notation.castle_kingside_black:
-				b.blackCastleKingside = true;break;
+				b.board[b.blackCastleKingPos] = true;break;
 				
 			case fen_notation.castle_queenside_black:
-				b.blackCastleQueenside = true;break;
+				b.board[b.blackCastleKingPos] = true;break;
 				
 			case fen_notation.castle_kingside_white: 
-				b.whiteCastleKingside = true;break;
+				b.board[b.blackCastleKingPos] = true;break;
 			
 			case fen_notation.castle_queenside_white: 
-				b.whiteCastleQueenside = true;break;
+				b.board[b.blackCastleKingPos] = true;break;
 		}
 	}
 	
@@ -215,7 +199,7 @@ function board_setup(fen) {
 		var sid = char;
 		sid += string_char_at(fen, ++stringpos);
 		
-		b.enpassantSquare = square_number_from_id(sid);
+		b.board[b.enpassantSquarePos] = square_number_from_id(sid);
 	}
 	stringpos++; //skip the space
 	

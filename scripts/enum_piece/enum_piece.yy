@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "enum_peice",
+  "name": "enum_piece",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

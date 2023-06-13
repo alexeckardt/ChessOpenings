@@ -21,6 +21,7 @@
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
+    {"name":"Board","order":19,"path":"folders/Scripts/Board.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"game_set_gamemode","order":1,"path":"scripts/game_set_gamemode/game_set_gamemode.yy",},
@@ -36,6 +37,7 @@
     {"name":"sBoardValidMove","order":6,"path":"sprites/sBoardValidMove/sBoardValidMove.yy",},
     {"name":"Agent","order":2,"path":"objects/Agent/Agent.yy",},
     {"name":"sPiecesWhite","order":3,"path":"sprites/sPiecesWhite/sPiecesWhite.yy",},
+    {"name":"enum_fen","order":18,"path":"scripts/enum_fen/enum_fen.yy",},
     {"name":"sCursor","order":1,"path":"sprites/sCursor/sCursor.yy",},
     {"name":"sPieceShadow","order":5,"path":"sprites/sPieceShadow/sPieceShadow.yy",},
     {"name":"board_create_fen","order":13,"path":"scripts/board_create_fen/board_create_fen.yy",},

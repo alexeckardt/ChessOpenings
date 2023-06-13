@@ -11,17 +11,17 @@ if (instance_exists(board)) {
 		
 		thinkingTimeLeft--;
 		if (thinkingTimeLeft < 0) {
-			//Get All Possible Moves (Side Effect, movesList is populated).
-			ds_list_clear(movesList);
-			agent_get_all_possible_moves(board, movesList, isWhite);
+			//Get All Possible Moves (Side Effect, myMovesList is populated).
+			ds_list_clear(myMovesList);
+			//agent_get_all_possible_moves(board, myMovesList, isWhite);
 	
 			//Decide
-			var s = ds_list_size(movesList);
+			var s = ds_list_size(myMovesList);
 			var moveMaking = irandom(s-1); // 
-			var move = movesList[| moveMaking];
+			var move = myMovesList[| moveMaking];
 	
 			// Move
-			board_make_move(board, move);
+			//board_make_move(board, move);
 	
 			//
 			//Check fro Game over

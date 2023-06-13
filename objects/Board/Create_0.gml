@@ -4,16 +4,14 @@
 //
 // Board Representation
 //
-board = array_create(64, piece.none);
-ds_grid_clear(board, emptyPiece);
+board = array_create(70, piece.none); //64 squares, whiteToPlay, enpassantsquare, castlingRights(x4)
 
-validSquaresToMoveTo = ds_list_create();
-
-
-// the attacksquares dictonary
-attackedSquares = ds_map_create();
-piecesCheckingKing = ds_list_create(); //Store
-checkBlockingSquares = ds_map_create();
+whiteToPlaySquare = 64;
+enpassantSquarePos = 65;
+whiteCastleKingPos = 66;
+whiteCastleQueenPos = 67;
+blackCastleKingPos = 68;
+blackCastleQueenPos = 69;
 
 //
 // Game State
@@ -21,9 +19,6 @@ checkBlockingSquares = ds_map_create();
 movesStack = ds_stack_create();
 turnNumber = 0;
 whiteToMove = true;
-
-enpassantSquare = -1;
-
 whiteKingSquare = -1;
 blackKingSquare = -1;
 
