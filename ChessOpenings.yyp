@@ -47,6 +47,8 @@
     {"id":{"name":"piece_get_type","path":"scripts/piece_get_type/piece_get_type.yy",},},
     {"id":{"name":"piece_get_color","path":"scripts/piece_get_color/piece_get_color.yy",},},
     {"id":{"name":"board_generate_moves","path":"scripts/board_generate_moves/board_generate_moves.yy",},},
+    {"id":{"name":"board_make_move","path":"scripts/board_make_move/board_make_move.yy",},},
+    {"id":{"name":"Move","path":"scripts/Move/Move.yy",},},
     {"id":{"name":"Board","path":"objects/Board/Board.yy",},},
     {"id":{"name":"enum_gamemode","path":"scripts/enum_gamemode/enum_gamemode.yy",},},
     {"id":{"name":"sPiecesBlack","path":"sprites/sPiecesBlack/sPiecesBlack.yy",},},

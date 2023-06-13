@@ -29,6 +29,8 @@
     {"name":"piece_get_type","order":2,"path":"scripts/piece_get_type/piece_get_type.yy",},
     {"name":"piece_get_color","order":1,"path":"scripts/piece_get_color/piece_get_color.yy",},
     {"name":"board_generate_moves","order":2,"path":"scripts/board_generate_moves/board_generate_moves.yy",},
+    {"name":"board_make_move","order":7,"path":"scripts/board_make_move/board_make_move.yy",},
+    {"name":"Move","order":8,"path":"scripts/Move/Move.yy",},
     {"name":"Board","order":1,"path":"objects/Board/Board.yy",},
     {"name":"sPiecesBlack","order":4,"path":"sprites/sPiecesBlack/sPiecesBlack.yy",},
     {"name":"board_white_to_play","order":1,"path":"scripts/board_white_to_play/board_white_to_play.yy",},
