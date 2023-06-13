@@ -58,9 +58,7 @@ pieceOnBoardOffsetX = 9;
 pieceOnBoardOffsetY = 7;
 pieceSnapSpeed = 0.2;
 
-emptyPiece = noone;
-pickedUpPiece = emptyPiece;
-selectedPeiceYOffset = -10;
+pickedUpSquare = -1;
 
 boardShakeAmount = 0;
 boardShakeX = 0;

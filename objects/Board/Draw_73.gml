@@ -49,7 +49,6 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	//Exit If No Peice
 	if (p == piece.none)
 		continue;
-	
 
 	// Decide
 	var row = sqrr div boardWidth;
@@ -58,6 +57,12 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	// Position
 	var xx = boardX + (col)*squareWidth + boardShakeX + pieceOnBoardOffsetX;
 	var yy = boardY + (row)*squareWidth + boardShakeY + pieceOnBoardOffsetY;
+
+	// Pickup
+	if (pickedUpSquare == sqrr) {
+		xx = mouse_x;
+		yy = mouse_y;			
+	}
 
 	//
 	var frame = piece_get_type(p);

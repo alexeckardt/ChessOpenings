@@ -29,12 +29,12 @@ function board_setup(fen) {
 	for (var i = 0; i < array_length(b.board); i++) {
 		b.board[i] = piece.none;	
 	}
-	b.board[b.whiteToPlaySquare] = false;
-	b.board[b.enpassantSquarePos] = -1;
-	b.board[b.blackCastleKingPos] = false;
-	b.board[b.blackCastleQueenPos] = false;
-	b.board[b.whiteCastleKingPos] = false;
-	b.board[b.whiteCastleQueenPos] = false;
+	b.board[board_other_squares.white_to_move] = false;
+	b.board[board_other_squares.enpassant_square] = -1;
+	b.board[board_other_squares.black_castle_kingside] = false;
+	b.board[board_other_squares.black_castle_queenside] = false;
+	b.board[board_other_squares.white_castle_kingside] = false;
+	b.board[board_other_squares.white_castle_queenside] = false;
 	
 	//
 	//

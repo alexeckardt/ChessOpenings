@@ -19,3 +19,40 @@ if (keyboard_check_pressed(ord("Z"))) {
 //event_user(0);
 
 var playerHasControl = Game.playerHasControl && !gameOver;
+
+//
+// Get Mouse Position
+mouseSquareIndexX = (mouse_x - boardX) div squareWidth;
+mouseSquareIndexY = (mouse_y - boardY) div squareWidth;
+var mouseSquareId = mouseSquareIndexX + mouseSquareIndexY*8;
+
+
+// Pickup Square (If Mouse Good)
+if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8 
+&& mouseSquareIndexY >= 0 && mouseSquareIndexY < 8) {
+	
+	//Pickup
+	if (mouse_check_button(mb_left)) {
+	
+		//Pickup
+		if (pickedUpSquare == -1) {
+			pickedUpSquare = mouseSquareId;
+		}
+	
+	//Drop
+	} else {
+		
+		//Drop
+		if (pickedUpSquare != -1) {
+			
+			//Make Move
+			var move = new Move(pickedUpSquare, mouseSquareId);
+			
+			//Ensure Legal
+			
+			board_make_move(id, move);
+			pickedUpSquare = -1;
+		}
+		
+	}
+}

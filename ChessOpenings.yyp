@@ -51,6 +51,7 @@
     {"id":{"name":"Move","path":"scripts/Move/Move.yy",},},
     {"id":{"name":"Board","path":"objects/Board/Board.yy",},},
     {"id":{"name":"enum_gamemode","path":"scripts/enum_gamemode/enum_gamemode.yy",},},
+    {"id":{"name":"board_make_internal_move","path":"scripts/board_make_internal_move/board_make_internal_move.yy",},},
     {"id":{"name":"sPiecesBlack","path":"sprites/sPiecesBlack/sPiecesBlack.yy",},},
     {"id":{"name":"board_white_to_play","path":"scripts/board_white_to_play/board_white_to_play.yy",},},
     {"id":{"name":"Game","path":"objects/Game/Game.yy",},},

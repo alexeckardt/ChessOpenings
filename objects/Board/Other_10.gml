@@ -16,10 +16,6 @@ if (boardShakeAmount > 0.01) {
 boardY = lerp(boardY, boardGoalY, 0.2);
 
 
-//
-// Get Mouse Position
-mouseSquareIndexX = (mouse_x - boardX) div squareWidth;
-mouseSquareIndexY = (mouse_y - boardY) div squareWidth;
 
 if (flippedBoard) {
 	mouseSquareIndexY = (boardY + boardWidth*squareWidth - mouse_y) div squareWidth;	
