@@ -4,7 +4,7 @@
 //
 // Board Representation
 //
-board = ds_grid_create(boardWidth, boardWidth);
+board = array_create(64, piece.none);
 ds_grid_clear(board, emptyPiece);
 
 validSquaresToMoveTo = ds_list_create();

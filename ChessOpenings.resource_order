@@ -25,6 +25,8 @@
   "ResourceOrderSettings": [
     {"name":"game_set_gamemode","order":1,"path":"scripts/game_set_gamemode/game_set_gamemode.yy",},
     {"name":"board_setup","order":2,"path":"scripts/board_setup/board_setup.yy",},
+    {"name":"piece_get_type","order":2,"path":"scripts/piece_get_type/piece_get_type.yy",},
+    {"name":"piece_get_color","order":1,"path":"scripts/piece_get_color/piece_get_color.yy",},
     {"name":"Board","order":1,"path":"objects/Board/Board.yy",},
     {"name":"sPiecesBlack","order":4,"path":"sprites/sPiecesBlack/sPiecesBlack.yy",},
     {"name":"fontDebug","order":1,"path":"fonts/fontDebug/fontDebug.yy",},

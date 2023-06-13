@@ -40,8 +40,11 @@
     "IDEVersion": "2023.2.1.75",
   },
   "resources": [
+    {"id":{"name":"enum_peice","path":"scripts/enum_peice/enum_peice.yy",},},
     {"id":{"name":"game_set_gamemode","path":"scripts/game_set_gamemode/game_set_gamemode.yy",},},
     {"id":{"name":"board_setup","path":"scripts/board_setup/board_setup.yy",},},
+    {"id":{"name":"piece_get_type","path":"scripts/piece_get_type/piece_get_type.yy",},},
+    {"id":{"name":"piece_get_color","path":"scripts/piece_get_color/piece_get_color.yy",},},
     {"id":{"name":"Board","path":"objects/Board/Board.yy",},},
     {"id":{"name":"enum_gamemode","path":"scripts/enum_gamemode/enum_gamemode.yy",},},
     {"id":{"name":"sPiecesBlack","path":"sprites/sPiecesBlack/sPiecesBlack.yy",},},
