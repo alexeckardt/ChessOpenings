@@ -40,9 +40,32 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 }
 
 //
-// Draw Peices
+// Draw Peices (Temp)
 //
+for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
+	
+	var p = board[sqrr];
+	
+	//Exit If No Peice
+	if (p == piece.none)
+		continue;
+	
 
+	// Decide
+	var row = sqrr div boardWidth;
+	var col = sqrr - row*8;
+	
+	// Position
+	var xx = boardX + (col)*squareWidth + boardShakeX + pieceOnBoardOffsetX;
+	var yy = boardY + (row)*squareWidth + boardShakeY + pieceOnBoardOffsetY;
+
+	//
+	var frame = piece_get_type(p);
+	var spr = (piece_get_color(p)) ? whitePiecesSprite : blackPiecesSprite;
+	
+	draw_sprite(spr, frame, xx, yy);
+
+}
 
 //
 //

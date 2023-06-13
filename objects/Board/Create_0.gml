@@ -72,6 +72,9 @@ boardShakeAmount = 0;
 boardShakeX = 0;
 boardShakeY = 0;
 
+whitePiecesSprite = sPiecesWhite;
+blackPiecesSprite = sPiecesBlack;
+
 // Particles
 particles = ds_list_create();
 
