@@ -21,6 +21,13 @@ enum piece {
 	// king = 6
 	//
 	
+	type_pawn = 0,
+	type_knight = 1,
+	type_bishop = 2,
+	type_rook = 3,
+	type_queen = 4,
+	type_king = 5,
+	
 	black_pawn = 0, // 0000
 	black_knight = 2, // 0010
 	black_bishop = 4, // 0100

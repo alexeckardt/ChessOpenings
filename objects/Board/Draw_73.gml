@@ -63,6 +63,7 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	var frame = piece_get_type(p);
 	var spr = (piece_get_color(p)) ? whitePiecesSprite : blackPiecesSprite;
 	
+	//Draw
 	draw_sprite(spr, frame, xx, yy);
 
 }

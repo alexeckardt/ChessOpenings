@@ -137,10 +137,10 @@ function board_setup(fen) {
 	
 	switch (ord(char)) {
 		case fen_notation.to_move_white: 
-			b.board[b.whiteToPlaySquare] = true;
+			b.board[board_other_squares.white_to_move] = true;
 		break;
 		case fen_notation.to_move_black:
-			b.board[b.whiteToPlaySquare] = false;
+			b.board[board_other_squares.white_to_move] = false;
 		break;
 		
 		default:
@@ -172,16 +172,16 @@ function board_setup(fen) {
 				break;
 				
 			case fen_notation.castle_kingside_black:
-				b.board[b.blackCastleKingPos] = true;break;
+				b.board[board_other_squares.black_castle_kingside] = true;break;
 				
 			case fen_notation.castle_queenside_black:
-				b.board[b.blackCastleKingPos] = true;break;
+				b.board[board_other_squares.black_castle_queenside] = true;break;
 				
 			case fen_notation.castle_kingside_white: 
-				b.board[b.blackCastleKingPos] = true;break;
+				b.board[board_other_squares.white_castle_kingside] = true;break;
 			
 			case fen_notation.castle_queenside_white: 
-				b.board[b.blackCastleKingPos] = true;break;
+				b.board[board_other_squares.white_castle_queenside] = true;break;
 		}
 	}
 	
@@ -199,7 +199,7 @@ function board_setup(fen) {
 		var sid = char;
 		sid += string_char_at(fen, ++stringpos);
 		
-		b.board[b.enpassantSquarePos] = square_number_from_id(sid);
+		b.board[board_other_squares.enpassant_square] = square_number_from_id(sid);
 	}
 	stringpos++; //skip the space
 	

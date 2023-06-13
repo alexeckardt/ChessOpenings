@@ -5,13 +5,7 @@
 // Board Representation
 //
 board = array_create(70, piece.none); //64 squares, whiteToPlay, enpassantsquare, castlingRights(x4)
-
-whiteToPlaySquare = 64;
-enpassantSquarePos = 65;
-whiteCastleKingPos = 66;
-whiteCastleQueenPos = 67;
-blackCastleKingPos = 68;
-blackCastleQueenPos = 69;
+squaresUntilEdgeLUT = board_generate_directions_to_edge_grid();
 
 //
 // Game State
