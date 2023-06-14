@@ -13,4 +13,6 @@ function board_make_move(board, move) {
 	ds_stack_push(stack, move);
 	board.turnNumber++;
 
+	//Switch W2M
+	b[board_other_squares.white_to_move] = !b[board_other_squares.white_to_move];
 }

@@ -4,8 +4,11 @@
 //
 function board_make_internal_move(b, move) {
 
+	var source = move_get_source(move);
+	var dest = move_get_target(move);
+
 	//Update Board
-	b[move.dest] = b[move.source]
-	b[move.source] = piece.none;
+	b[dest] = b[source]
+	b[source] = piece.none;
 
 }

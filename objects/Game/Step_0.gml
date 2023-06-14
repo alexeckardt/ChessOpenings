@@ -21,7 +21,9 @@ if (keyboard_check_pressed(ord("C"))) {
 bkgOff = (bkgOff + bkgSpeed) % sprite_get_width(backgroundSprite);
 
 if (instance_exists(b)) {
-	backgroundMix = lerp(backgroundMix, b.whiteToMove, 0.1);
+	var w2m = board_white_to_play(b);
+	backgroundMix = lerp(backgroundMix, w2m, 0.1);
+	
 	backgroundRedBlend = lerp(backgroundRedBlend, b.kingInCheck*0.4*!b.gameOver, 0.1);
 	backgroundGameOverAlpha = lerp(backgroundGameOverAlpha, b.gameOver, 0.1);
 }

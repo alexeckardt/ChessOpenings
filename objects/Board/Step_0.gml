@@ -36,7 +36,17 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 	
 		//Pickup
 		if (pickedUpSquare == -1) {
-			pickedUpSquare = mouseSquareId;
+			
+			//Check Exists Piece
+			var p = board[mouseSquareId];
+			if (piece_get_type(p) != piece.none) {
+				if (piece_get_color(p) == board_white_to_play(id)) {
+					
+					//Pickup
+					pickedUpSquare = mouseSquareId;
+				}
+			}
+			
 		}
 	
 	//Drop
@@ -46,11 +56,9 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 		if (pickedUpSquare != -1) {
 			
 			//Make Move
-			var move = new Move(pickedUpSquare, mouseSquareId);
+			var move = move_encode(pickedUpSquare, mouseSquareId);
 			
-			//Ensure Legal
-			
-			board_make_move(id, move);
+			var result = board_attempt_move(id, move);
 			pickedUpSquare = -1;
 		}
 		

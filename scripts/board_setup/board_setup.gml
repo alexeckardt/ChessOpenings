@@ -121,6 +121,7 @@ function board_setup(fen) {
 		
 		//Exit
 		if (squarePlacingIn >= 64) {
+			stringpos++; // Skip Space
 			break;	
 		}
 		
@@ -211,12 +212,5 @@ function board_setup(fen) {
 	//
 	// Determine if King is in check
 	//
-	var map = b.attackedSquares;
-	ds_map_clear(map);
-			
-	board_get_all_attacked_squares(b, map, !b.whiteToMove);
-	var kingSquareToCheck = (!b.whiteToMove) ? b.blackKingSquare : b.whiteKingSquare;
-	b.kingInCheck = ds_map_exists(map, kingSquareToCheck);
-
 	return b;
 }

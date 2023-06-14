@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "board_generate_sliding_moves",
+  "name": "board_generate_horizontal_sliding_moves",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

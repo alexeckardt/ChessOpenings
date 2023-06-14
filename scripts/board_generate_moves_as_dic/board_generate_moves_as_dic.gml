@@ -2,12 +2,17 @@
 //
 //
 //
-function board_generate_moves_as_list(boardArray) {
+function board_generate_moves_as_dic(boardArray) {
 
-	var list = ds_list_create();
+	var map = ds_map_create();
 
 	//
+	// Determine Checks / Pins (Same Hopefully)
 	//
+	
+	
+	//
+	// Peice Move
 	//
 	var w2move = boardArray[board_other_squares.white_to_move];
 	for (var i = 0; i < 64; i++) {
@@ -30,16 +35,16 @@ function board_generate_moves_as_list(boardArray) {
 					break;
 					
 				case piece.type_bishop:
-					board_generate_sliding_moves(boardArray, list, p, i, false);
+					board_generate_diagonal_sliding_moves(boardArray, map, i);
 					break;
 					
 				case piece.type_rook:
-					board_generate_sliding_moves(boardArray, list, p, i, true);
+					board_generate_horizontal_sliding_moves(boardArray, map, i);
 					break;
 					
 				case piece.type_queen:
-					board_generate_sliding_moves(boardArray, list, p, i, false);
-					board_generate_sliding_moves(boardArray, list, p, i, true);
+					board_generate_diagonal_sliding_moves(boardArray, map, i);
+					board_generate_horizontal_sliding_moves(boardArray, map, i);
 					break;
 					
 				case piece.type_king:
@@ -50,7 +55,7 @@ function board_generate_moves_as_list(boardArray) {
 		}
 	}
 
-	// Make Sure to Delete the List!!
-	return list;
+	// Make Sure to Delete the Map
+	return map;
 
 }
