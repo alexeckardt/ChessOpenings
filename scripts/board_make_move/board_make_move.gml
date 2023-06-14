@@ -4,11 +4,11 @@
 //
 function board_make_move(board, move) {
 
-	//Update Board
+	// Get
 	var b = board.board;
 	var pMoved = b[move_get_source(move)];
 	
-	//Make Move
+	//Update Board
 	board_make_internal_move(b, move);
 
 	//
@@ -21,7 +21,10 @@ function board_make_move(board, move) {
 	var enpassantSquare = b[board_other_squares.enpassant_square]; //store
 	b[board_other_squares.enpassant_square] = -1;
 	
-	if (piece_get_type(pMoved) == piece.type_pawn) {
+	var type = piece_get_type(pMoved); 
+	
+	//Ensure Pawn
+	if (type == piece.type_pawn) {
 		
 		var sourcerank = source div 8;
 		var rank = target div 8;
@@ -41,16 +44,57 @@ function board_make_move(board, move) {
 		//
 		// Enpassant Capture
 		if (target == enpassantSquare) {
-		
 			//Enpassant Happened, Kill Peice
-			
 			var pawnSquare = (rank == 2) ? target+8 : target-8;
 			b[pawnSquare] = piece.none;
+		}
+	}
+
+	//
+	// Castling
+	//
+	var w2m = b[board_other_squares.white_to_move];
+	if (type == piece.type_king) {
+		
+		var rank = source div 8;
+		
+		var sourcefile = source mod 8;
+		var targetfile = target mod 8;
+		
+		//Castling was Permitted
+		if (abs(sourcefile - targetfile) == 2) {
+			
+			var placeRookFile = sourcefile + (targetfile-sourcefile)/2;
+			var sourceRookFile = (targetfile div 4) * 7; //4 is the kings original file, so queenside is 3 div 4 = 0 and other is 6 div 4 = 1
+			
+			//Move the rook too
+			b[sourceRookFile + rank*8] = piece.none;
+			b[placeRookFile + rank*8] = (w2m) ? piece.white_rook : piece.black_rook;
 			
 		}
 		
-		
+		//Turn off Castling on board
+		if (w2m) {
+			b[board_other_squares.white_castle_kingside] = false;
+			b[board_other_squares.white_castle_queenside] = false;
+		} else {
+			b[board_other_squares.black_castle_kingside] = false;
+			b[board_other_squares.black_castle_queenside] = false;
+		}
 	}
+	
+	// Disable Castling
+	if (source == 0 || target == 0)
+		b[board_other_squares.black_castle_queenside] = false;
+	if (source == 7 || target == 7)
+		b[board_other_squares.black_castle_kingside] = false;
+	if (source == 56 || target == 56)
+		b[board_other_squares.white_castle_queenside] = false;
+	if (source == 63 || target == 63)
+		b[board_other_squares.white_castle_kingside] = false;
+
+	
+
 
 	// Come up With move data
 	//var moveData = 
