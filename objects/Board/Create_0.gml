@@ -11,6 +11,7 @@ squaresUntilEdgeLUT = board_generate_directions_to_edge_grid();
 // Game State
 //
 movesStack = ds_stack_create();
+captureStack = ds_stack_create();
 turnNumber = 0;
 whiteToMove = true;
 whiteKingSquare = -1;

@@ -17,9 +17,11 @@ function piece_generate_moves(boardArray, mapToFill, source){
 			return;
 				
 		case piece.type_pawn:
+			board_generate_pawn_moves(boardArray, mapToFill, source);
 			break;
 				
 		case piece.type_knight:
+			board_generate_knight_moves(boardArray, mapToFill, source);
 			break;
 					
 		case piece.type_bishop:

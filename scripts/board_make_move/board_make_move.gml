@@ -10,6 +10,9 @@ function board_make_move(board, move) {
 
 	//Push to Stack
 	var stack = board.movesStack;
+	
+	//var moveData = 
+	
 	ds_stack_push(stack, move);
 	board.turnNumber++;
 
