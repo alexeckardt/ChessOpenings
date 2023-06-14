@@ -5,7 +5,9 @@
 // Board Representation
 //
 board = array_create(70, piece.none); //64 squares, whiteToPlay, enpassantsquare, castlingRights(x4)
-squaresUntilEdgeLUT = board_generate_directions_to_edge_grid();
+squaresUntilEdgeLUT = board_LUT_generate_directions_to_edge_grid();
+boardSquareDiagonals = ds_grid_create(64, 2);
+board_LUT_generate_diagonals(boardSquareDiagonals);
 
 //
 // Game State

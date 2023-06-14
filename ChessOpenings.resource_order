@@ -22,6 +22,7 @@
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
+    {"name":"LookUpTables","order":21,"path":"folders/Scripts/Board/LookUpTables.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"move_get_source","order":15,"path":"scripts/move_get_source/move_get_source.yy",},
@@ -48,7 +49,6 @@
     {"name":"game_set_player_control","order":2,"path":"scripts/game_set_player_control/game_set_player_control.yy",},
     {"name":"cardinal_get_incr_x","order":10,"path":"scripts/cardinal_get_incr_x/cardinal_get_incr_x.yy",},
     {"name":"sBoardValidMove","order":6,"path":"sprites/sBoardValidMove/sBoardValidMove.yy",},
-    {"name":"board_generate_directions_to_edge_grid","order":5,"path":"scripts/board_generate_directions_to_edge_grid/board_generate_directions_to_edge_grid.yy",},
     {"name":"Agent","order":2,"path":"objects/Agent/Agent.yy",},
     {"name":"sPiecesWhite","order":3,"path":"sprites/sPiecesWhite/sPiecesWhite.yy",},
     {"name":"enum_board_other_squares","order":3,"path":"scripts/enum_board_other_squares/enum_board_other_squares.yy",},
@@ -56,8 +56,10 @@
     {"name":"board_generate_horizontal_sliding_moves","order":4,"path":"scripts/board_generate_horizontal_sliding_moves/board_generate_horizontal_sliding_moves.yy",},
     {"name":"sCursor","order":1,"path":"sprites/sCursor/sCursor.yy",},
     {"name":"board_generate_diagonal_sliding_moves","order":12,"path":"scripts/board_generate_diagonal_sliding_moves/board_generate_diagonal_sliding_moves.yy",},
+    {"name":"board_generate_pinned_squares","order":20,"path":"scripts/board_generate_pinned_squares/board_generate_pinned_squares.yy",},
     {"name":"sPieceShadow","order":5,"path":"sprites/sPieceShadow/sPieceShadow.yy",},
     {"name":"board_create_fen","order":13,"path":"scripts/board_create_fen/board_create_fen.yy",},
     {"name":"piece_generate_moves","order":3,"path":"scripts/piece_generate_moves/piece_generate_moves.yy",},
+    {"name":"board_LUT_generate_diagonals","order":1,"path":"scripts/board_LUT_generate_diagonals/board_LUT_generate_diagonals.yy",},
   ],
 }

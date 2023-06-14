@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "board_generate_directions_to_edge_grid",
+  "name": "board_generate_pinned_squares",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

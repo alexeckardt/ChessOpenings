@@ -2,7 +2,7 @@
 //
 //
 //
-function board_generate_directions_to_edge_grid() {
+function board_LUT_generate_directions_to_edge_grid() {
 
 	var grid = ds_grid_create(64, 4);
 
