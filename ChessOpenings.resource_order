@@ -32,6 +32,8 @@
     {"name":"board_generate_moves_as_dic","order":2,"path":"scripts/board_generate_moves_as_dic/board_generate_moves_as_dic.yy",},
     {"name":"board_make_move","order":7,"path":"scripts/board_make_move/board_make_move.yy",},
     {"name":"Board","order":1,"path":"objects/Board/Board.yy",},
+    {"name":"board_generate_knight_moves","order":18,"path":"scripts/board_generate_knight_moves/board_generate_knight_moves.yy",},
+    {"name":"board_generate_pawn_moves","order":19,"path":"scripts/board_generate_pawn_moves/board_generate_pawn_moves.yy",},
     {"name":"board_make_internal_move","order":9,"path":"scripts/board_make_internal_move/board_make_internal_move.yy",},
     {"name":"sPiecesBlack","order":4,"path":"sprites/sPiecesBlack/sPiecesBlack.yy",},
     {"name":"move_encode","order":14,"path":"scripts/move_encode/move_encode.yy",},
@@ -56,5 +58,6 @@
     {"name":"board_generate_diagonal_sliding_moves","order":12,"path":"scripts/board_generate_diagonal_sliding_moves/board_generate_diagonal_sliding_moves.yy",},
     {"name":"sPieceShadow","order":5,"path":"sprites/sPieceShadow/sPieceShadow.yy",},
     {"name":"board_create_fen","order":13,"path":"scripts/board_create_fen/board_create_fen.yy",},
+    {"name":"piece_generate_moves","order":3,"path":"scripts/piece_generate_moves/piece_generate_moves.yy",},
   ],
 }

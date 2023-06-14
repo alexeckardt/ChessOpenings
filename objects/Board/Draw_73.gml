@@ -32,6 +32,12 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 		draw_text_color(xx, yy-2, sqrr, cOp, cOp, cOp, cOp, 0.5);
 	}
 	
+	//Draw If Legal Move
+	if (ds_map_exists(pickedUpPieceLegalMoves, sqrr)) {
+		var frame = (board[sqrr] != piece.none);
+		draw_sprite_ext(sBoardValidMove, frame, xx, yy, 1, 1, 0, shadowCol, true);
+	}
+	
 	//Bottom, Draw Board Edge
 	if (j == 7) {
 		col = (lightSquare) ? lightSquareEdge : darkSquareEdge;

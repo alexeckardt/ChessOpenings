@@ -23,39 +23,12 @@ function board_generate_moves_as_dic(boardArray) {
 		//Check
 		if (piece_get_color(p) == w2move) {
 			
-			var type = piece_get_type(p);
-			
-			//Generate Moves
-			switch (type) {
-				
-				case piece.type_pawn:
-					break;
-				
-				case piece.type_knight:
-					break;
-					
-				case piece.type_bishop:
-					board_generate_diagonal_sliding_moves(boardArray, map, i);
-					break;
-					
-				case piece.type_rook:
-					board_generate_horizontal_sliding_moves(boardArray, map, i);
-					break;
-					
-				case piece.type_queen:
-					board_generate_diagonal_sliding_moves(boardArray, map, i);
-					board_generate_horizontal_sliding_moves(boardArray, map, i);
-					break;
-					
-				case piece.type_king:
-					break;
-			
-			}
+			// Fill Map by Piece
+			piece_generate_moves(boardArray, map, i);
 			
 		}
 	}
 
 	// Make Sure to Delete the Map
 	return map;
-
 }

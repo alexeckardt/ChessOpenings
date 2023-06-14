@@ -1,8 +1,8 @@
 // @desc
 //
+// maxrad: 8 normally, 1 if king
 //
-//
-function board_generate_horizontal_sliding_moves(boardArray, map, sourceSquare) {
+function board_generate_horizontal_sliding_moves(boardArray, map, sourceSquare, maxrad) {
 	
 	//Get
 	var lut = Board.id.squaresUntilEdgeLUT;
@@ -19,16 +19,16 @@ function board_generate_horizontal_sliding_moves(boardArray, map, sourceSquare) 
 		var yinc = cardinal_get_incr_y(i);
 		
 		//Loop
-		for (var r = 1; r < distanceToEdge; r++) {
+		for (var r = 1; r <= min(distanceToEdge, maxrad); r++) {
 			
 			//Get target & peice on target
-			var targetSquare = sourceSquare + xinc + yinc;
+			var targetSquare = sourceSquare + (xinc + yinc)*r;
 			var p = boardArray[targetSquare];
 			
-			if (p == piece.none) continue;
+			var empty = p == piece.none;
 			
 			//Can't Go Further, Blocked by Self
-			if (piece_get_color(p) == w2m) {
+			if (piece_get_color(p) == w2m && !empty) {
 				break;	
 			}
 			
@@ -37,7 +37,7 @@ function board_generate_horizontal_sliding_moves(boardArray, map, sourceSquare) 
 			ds_map_add(map, m, true);
 			
 			// Can't go further, blocked by capture (we already added move)
-			if (piece_get_color(p) != w2m) {
+			if (piece_get_color(p) != w2m && !empty) {
 				break;	
 			}
 		}

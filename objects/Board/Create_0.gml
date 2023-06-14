@@ -67,6 +67,8 @@ boardShakeY = 0;
 whitePiecesSprite = sPiecesWhite;
 blackPiecesSprite = sPiecesBlack;
 
+pickedUpPieceLegalMoves = ds_map_create();
+
 // Particles
 particles = ds_list_create();
 

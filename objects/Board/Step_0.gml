@@ -44,6 +44,19 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 					
 					//Pickup
 					pickedUpSquare = mouseSquareId;
+					
+					//Get
+					ds_map_clear(pickedUpPieceLegalMoves);
+					piece_generate_moves(board, pickedUpPieceLegalMoves, pickedUpSquare);
+					
+					//We have moves, now we want to only get the target squares
+					arr = ds_map_keys_to_array(pickedUpPieceLegalMoves);
+					ds_map_clear(pickedUpPieceLegalMoves);
+					for (var i = 0; i < array_length(arr); i++) {
+						var mdest = move_get_target(arr[i]);
+						ds_map_add(pickedUpPieceLegalMoves, mdest, true);
+					}
+					
 				}
 			}
 			
@@ -55,11 +68,15 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 		//Drop
 		if (pickedUpSquare != -1) {
 			
-			//Make Move
+			//Create Move
 			var move = move_encode(pickedUpSquare, mouseSquareId);
 			
+			//Make
 			var result = board_attempt_move(id, move);
 			pickedUpSquare = -1;
+			
+			//Flush Drawing
+			ds_map_clear(pickedUpPieceLegalMoves);
 		}
 		
 	}

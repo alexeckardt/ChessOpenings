@@ -51,6 +51,8 @@
     {"id":{"name":"board_make_move","path":"scripts/board_make_move/board_make_move.yy",},},
     {"id":{"name":"Board","path":"objects/Board/Board.yy",},},
     {"id":{"name":"enum_gamemode","path":"scripts/enum_gamemode/enum_gamemode.yy",},},
+    {"id":{"name":"board_generate_knight_moves","path":"scripts/board_generate_knight_moves/board_generate_knight_moves.yy",},},
+    {"id":{"name":"board_generate_pawn_moves","path":"scripts/board_generate_pawn_moves/board_generate_pawn_moves.yy",},},
     {"id":{"name":"board_make_internal_move","path":"scripts/board_make_internal_move/board_make_internal_move.yy",},},
     {"id":{"name":"sPiecesBlack","path":"sprites/sPiecesBlack/sPiecesBlack.yy",},},
     {"id":{"name":"move_encode","path":"scripts/move_encode/move_encode.yy",},},
@@ -81,6 +83,7 @@
     {"id":{"name":"board_generate_diagonal_sliding_moves","path":"scripts/board_generate_diagonal_sliding_moves/board_generate_diagonal_sliding_moves.yy",},},
     {"id":{"name":"sPieceShadow","path":"sprites/sPieceShadow/sPieceShadow.yy",},},
     {"id":{"name":"board_create_fen","path":"scripts/board_create_fen/board_create_fen.yy",},},
+    {"id":{"name":"piece_generate_moves","path":"scripts/piece_generate_moves/piece_generate_moves.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
