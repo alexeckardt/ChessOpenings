@@ -18,7 +18,7 @@ function board_make_move(board, move) {
 
 	// Get Move Data
 	var enpassantSquare = b[board_other_squares.enpassant_square]; //store
-	var moveData = new MoveData(move, pTarget, enpassantSquare);
+	var moveData = new MoveData(move, pTarget, enpassantSquare, false);
 
 	//
 	//Enpassant
@@ -65,6 +65,7 @@ function board_make_move(board, move) {
 		//
 		if (rank == 0 || rank == 8) {
 			b[target] = (rank == 0) ? piece.white_queen : piece.black_queen;
+			moveData.promotion = true;
 		}
 	}
 
@@ -95,21 +96,29 @@ function board_make_move(board, move) {
 		if (w2m) {
 			b[board_other_squares.white_castle_kingside] = false;
 			b[board_other_squares.white_castle_queenside] = false;
+			moveData.castleWhiteKingSideLost = true;
+			moveData.castleWhiteQueenSideLost = true;
 		} else {
 			b[board_other_squares.black_castle_kingside] = false;
 			b[board_other_squares.black_castle_queenside] = false;
+			moveData.castleBlackKingSideLost = true;
+			moveData.castleBlackQueenSideLost = true;
 		}
 	}
 	
 	// Disable Castling
 	if (source == 0 || target == 0)
 		b[board_other_squares.black_castle_queenside] = false;
+		moveData.castleBlackQueenSideLost = true;
 	if (source == 7 || target == 7)
 		b[board_other_squares.black_castle_kingside] = false;
+		moveData.castleBlackKingSideLost = true;
 	if (source == 56 || target == 56)
 		b[board_other_squares.white_castle_queenside] = false;
+		moveData.castleWhiteQueenSideLost = true;
 	if (source == 63 || target == 63)
 		b[board_other_squares.white_castle_kingside] = false;
+		moveData.castleWhiteKingSideLost = true;
 
 
 	//Push to Stack

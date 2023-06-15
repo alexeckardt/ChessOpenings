@@ -74,7 +74,9 @@ function board_generate_king_moves(boardArray, mapToFill, threatMap, source) {
 		}
 	}
 }
-
+//
+//
+//
 function king_move_add(boardArray, mapToFill, source, dest, threats, w2m) {
 
 	var target = boardArray[dest];
