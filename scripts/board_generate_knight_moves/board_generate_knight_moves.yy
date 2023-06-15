@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Board",
-    "path": "folders/Scripts/Board.yy",
+    "name": "Generating Moves",
+    "path": "folders/Scripts/Board/Generating Moves.yy",
   },
 }

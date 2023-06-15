@@ -10,5 +10,6 @@ enum board_other_squares {
 	white_castle_queenside = 67,
 	black_castle_kingside = 68,
 	black_castle_queenside = 69,
+	king_position = 70,
 
 }

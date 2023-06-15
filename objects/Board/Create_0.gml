@@ -4,16 +4,18 @@
 //
 // Board Representation
 //
-board = array_create(70, piece.none); //64 squares, whiteToPlay, enpassantsquare, castlingRights(x4)
+board = array_create(71, piece.none); //64 squares, whiteToPlay, enpassantsquare, castlingRights(x4)
 squaresUntilEdgeLUT = board_LUT_generate_directions_to_edge_grid();
 boardSquareDiagonals = ds_grid_create(64, 2);
 board_LUT_generate_diagonals(boardSquareDiagonals);
+
+threatMap = ds_map_create();
+restrictedMoves = ds_map_create();
 
 //
 // Game State
 //
 movesStack = ds_stack_create();
-captureStack = ds_stack_create();
 turnNumber = 0;
 whiteToMove = true;
 whiteKingSquare = -1;

@@ -2,7 +2,7 @@
 //
 //
 //
-function board_generate_knight_moves(boardArray, map, sourceSquare) {
+function board_generate_knight_threats(boardArray, map, sourceSquare) {
 
 	var lut = Board.id.squaresUntilEdgeLUT;
 	var distN = lut[# sourceSquare, cardinal.north];
@@ -23,12 +23,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distN >= 2) {
 		if (distE >= 1) {
 			var moveTarget = sourceSquare + northOff*2 + eastOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 		
 		if (distW >= 1) {
 			var moveTarget = sourceSquare + northOff*2 + westOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 	}
 	//
@@ -37,12 +37,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distS >= 2) {
 		if (distE >= 1) {
 			var moveTarget = sourceSquare + southOff*2 + eastOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 		
 		if (distW >= 1) {
 			var moveTarget = sourceSquare + southOff*2 + westOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 	}
 	//
@@ -51,12 +51,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distE >= 2) {
 		if (distN >= 1) {
 			var moveTarget = sourceSquare + eastOff*2 + northOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 		
 		if (distS >= 1) {
 			var moveTarget = sourceSquare + eastOff*2 + southOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 	}
 	//
@@ -65,27 +65,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distW >= 2) {
 		if (distN >= 1) {
 			var moveTarget = sourceSquare + westOff*2 + northOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 		
 		if (distS >= 1) {
 			var moveTarget = sourceSquare + westOff*2 + southOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)
+			board_add_to_threat_map(map, sourceSquare, moveTarget);
 		}
 	}
-}
-
-function knight_move_add(boardArray, map, sourceSquare, target, w2m) {
-	
-	//No Self Captures
-	var p = boardArray[target];
-	if (p != piece.none) {
-		if (piece_get_color(p) == w2m) {
-			return;
-		}
-	}
-	
-	//Encode and add
-	var move = move_encode(sourceSquare, target);
-	ds_map_add(map, move, true);
 }

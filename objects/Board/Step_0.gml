@@ -12,7 +12,7 @@ if (keyboard_check_pressed(vk_space)) {
 }
 
 if (keyboard_check_pressed(ord("Z"))) {
-	board_undo_move(board);
+	board_undo_move(id);
 }
 
 //Animate Grid
@@ -47,7 +47,7 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 					
 					//Get
 					ds_map_clear(pickedUpPieceLegalMoves);
-					piece_generate_moves(board, pickedUpPieceLegalMoves, pickedUpSquare);
+					piece_generate_moves(board, pickedUpPieceLegalMoves, threatMap, restrictedMoves, pickedUpSquare);
 					
 					//We have moves, now we want to only get the target squares
 					arr = ds_map_keys_to_array(pickedUpPieceLegalMoves);

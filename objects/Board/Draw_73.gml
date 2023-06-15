@@ -20,6 +20,11 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	var xx = boardX + i*squareWidth + boardShakeX;
 	var yy = boardY + j*squareWidth + boardShakeY;
 	
+	//Draw If Threat Square
+	if (ds_map_exists(threatMap, sqrr)) {
+		col = merge_color(col, c_red, 0.5);
+	}
+	
 	// Draw Board
 	draw_sprite_ext(sBoardSquare, 0, xx, yy, 1, 1, 0, col, 1);
 	
@@ -31,7 +36,7 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 		// Or draw the square number
 		draw_text_color(xx, yy-2, sqrr, cOp, cOp, cOp, cOp, 0.5);
 	}
-	
+
 	//Draw If Legal Move
 	if (ds_map_exists(pickedUpPieceLegalMoves, sqrr)) {
 		var frame = (board[sqrr] != piece.none);
@@ -96,5 +101,8 @@ for (var parts = 0; parts < s; parts++) {
 
 if (drawDebug) {
 	draw_set_font(fontDebug);
-	draw_text(10, 10, turnNumber);
+	
+	for (var i = 64; i < 71; i++) {	
+		draw_text(10, 10 + 16*(i-64), board[i]);	
+	}
 }

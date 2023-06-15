@@ -6,19 +6,26 @@ function board_make_move(board, move) {
 
 	// Get
 	var b = board.board;
-	var pMoved = b[move_get_source(move)];
+	var source = move_get_source(move);
+	var target = move_get_target(move);
+	
+	//Get
+	var pMoved = b[source];
+	var pTarget = b[target];
 	
 	//Update Board
 	board_make_internal_move(b, move);
 
+	// Get Move Data
+	var enpassantSquare = b[board_other_squares.enpassant_square]; //store
+	var moveData = new MoveData(move, pTarget, enpassantSquare);
+
 	//
 	//Enpassant
 	//
-	var source = move_get_source(move);
-	var target = move_get_target(move);
 	
 	//Reset the Enpassant Square
-	var enpassantSquare = b[board_other_squares.enpassant_square]; //store
+	
 	b[board_other_squares.enpassant_square] = -1;
 	
 	var type = piece_get_type(pMoved); 
@@ -93,18 +100,14 @@ function board_make_move(board, move) {
 	if (source == 63 || target == 63)
 		b[board_other_squares.white_castle_kingside] = false;
 
-	
-
-
-	// Come up With move data
-	//var moveData = 
-
-
 	//Push to Stack
 	var stack = board.movesStack;
-	ds_stack_push(stack, move);
+	ds_stack_push(stack, moveData);
 	board.turnNumber++;
 
 	//Switch W2M
 	b[board_other_squares.white_to_move] = !b[board_other_squares.white_to_move];
+	
+	//Update Threats
+	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);
 }

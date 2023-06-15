@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "board_generate_pawn_moves",
+  "name": "board_populate_threat_map",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

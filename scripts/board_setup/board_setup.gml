@@ -35,6 +35,7 @@ function board_setup(fen) {
 	b.board[board_other_squares.black_castle_queenside] = false;
 	b.board[board_other_squares.white_castle_kingside] = false;
 	b.board[board_other_squares.white_castle_queenside] = false;
+	b.board[board_other_squares.king_position] = -1;
 	
 	//
 	//
@@ -207,10 +208,12 @@ function board_setup(fen) {
 	//
 	// 5, 6 move counts. To do.
 	//
-
+	
 
 	//
 	// Determine if King is in check
 	//
+	board_populate_threat_map(b.board, b.threatMap, b.restrictedMoves);
+	
 	return b;
 }

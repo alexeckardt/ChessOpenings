@@ -2,13 +2,11 @@
 //
 //
 //
-function board_generate_diagonal_sliding_moves(boardArray, map, sourceSquare, maxrad, restrictedMoves, threatMap) {
+function board_generate_diagonal_sliding_threats(boardArray, map, sourceSquare, maxrad) {
 	
 	//Get
 	var lut = Board.id.squaresUntilEdgeLUT;
 	var w2m = boardArray[board_other_squares.white_to_move];
-	
-	var restrict = !ds_map_empty(restrictedMoves);
 	
 	// Loop Over All Directions
 	for (var i = 0; i < 4; i++) {
@@ -34,21 +32,19 @@ function board_generate_diagonal_sliding_moves(boardArray, map, sourceSquare, ma
 			
 			var empty = p == piece.none;
 			
-			//Can't Go Further, Blocked by Self
-			if (piece_get_color(p) == w2m && !empty) {
-				break;	
-			}
 			
 			//Add Move
-			if (!restrict || ds_map_exists(restrictedMoves, targetSquare)) { // In Check Restrictions
-				if (!board_piece_is_pinned(boardArray, threatMap, sourceSquare, targetSquare)) {
-					var m = move_encode(sourceSquare, targetSquare);
-					ds_map_add(map, m, true);
-				}
-			}
+			board_add_to_threat_map(map, sourceSquare, targetSquare);
 			
-			// Can't go further, blocked by capture (we already added move)
-			if (piece_get_color(p) != w2m && !empty) {
+			// Can't go further, blocked by some piece
+			if (!empty) {
+				
+				 // don't break, keep xraying king
+				if (piece_get_type(p) == piece.type_king) {
+					continue;
+				}
+				
+				//Otherwise, exit
 				break;	
 			}
 		}

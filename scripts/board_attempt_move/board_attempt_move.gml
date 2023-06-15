@@ -5,7 +5,7 @@
 function board_attempt_move(board, move) {
 
 	//Get Legal Moves
-	var legalMoves = board_generate_moves_as_dic(board.board);
+	var legalMoves = board_generate_moves_as_dic(board);
 
 	//Check Legal
 	var legal = ds_map_exists(legalMoves, move);
