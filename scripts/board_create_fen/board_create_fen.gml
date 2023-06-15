@@ -16,7 +16,7 @@ function board_create_fen(board) {
 			
 			var sqrr = i + j*8;
 			
-			if (board.board[sqrr]) {
+			if (board.board[sqrr] != piece.none) {
 				
 				//Add string
 				if (emptyStreak != 0) {

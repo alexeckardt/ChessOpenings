@@ -81,6 +81,9 @@ particles = ds_list_create();
 piecesReference = ds_list_create();
 generatedPiecesReference = false;
 
+whitePieceCount = 0;
+blackPieceCount = 0;
+
 flippedBoard = false;
 wasBoardJustFlipped = false;
 

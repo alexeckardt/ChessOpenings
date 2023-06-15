@@ -43,10 +43,19 @@ if (gameOver) {
 	if (!generatedPiecesReference) {
 		generatedPiecesReference = true;
 		
+		whitePieceCount = 0;
+		blackPieceCount = 0;
+		
 		for (var s = 0; s < 64; s++) {
 		
 			if (board[s] != piece.none) {
 				ds_list_add(piecesReference, s);	
+				
+				if (piece_get_color(board[s])) {
+					whitePieceCount++;	
+				} else {
+					blackPieceCount++;
+				}
 			}
 		
 		}
@@ -57,7 +66,10 @@ if (gameOver) {
 		//Start Blowing Up Peices
 		if (--explodingCooldown <= 0) {
 		
-			explodingCooldown = room_speed / 2;
+			var pCount = (whiteIsWinner) ? blackPieceCount : whitePieceCount;
+			pCount = (stalemate) ? ds_list_size(piecesReference) : pCount;
+		
+			explodingCooldown = room_speed * 2 / pCount;
 		
 			//Grab a reference.
 			// We no longer need references, so let's throw them all out, so no recycle

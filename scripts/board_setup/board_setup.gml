@@ -13,6 +13,7 @@ function board_setup(fen) {
 
 	//Get Board
 	var b = Board.id;
+	b.gameOver = false;
 	
 	//Reading String
 	var stringpos = 1; //1 indexed
