@@ -70,17 +70,14 @@ function board_populate_threat_map(boardArray, threatMap, restrictedMovesMap) {
 		
 			// Loop, Get all squares on this path
 		
-			for (var r = 0; r < 8; r++) {
+			var dis = square_get_distance_to_edge_from_offset(squareCheckedBy, checkedDirection);
+		
+			for (var r = 0; r < dis+1; r++) {
 				
 				var sid = squareCheckedBy + r*checkedDirection;
 				
 				var sidRank = sid div 8;
 				var sidFile = sid - sidRank*8;
-				
-				//Exit Next
-				if (sidFile == 0 || sidFile == 7 || sidRank == 0 || sidRank == 7) {
-					r = 100;	
-				}
 				
 				ds_map_add(restrictedMovesMap, sid, hitKingSquare);
 				

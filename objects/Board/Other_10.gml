@@ -15,10 +15,25 @@ if (boardShakeAmount > 0.01) {
 // Move Board
 boardY = lerp(boardY, boardGoalY, 0.2);
 
+// Animate Pieces
+if (!ds_map_empty(animations)) {
+	
+	var squareToAnim = ds_map_find_first(animations);
+	
+	while (squareToAnim != undefined) {
+		
+		var struct = animations[? squareToAnim];
+		
+		struct.drawX = lerp(struct.drawX, struct.drawXTo, pieceSnapSpeed);
+		struct.drawY = lerp(struct.drawY, struct.drawYTo, pieceSnapSpeed);
 
-
-if (flippedBoard) {
-	mouseSquareIndexY = (boardY + boardWidth*squareWidth - mouse_y) div squareWidth;	
+		//Don't Have to Remove, because it will get overriden eventually.
+		
+		//Next
+		squareToAnim = ds_map_find_next(animations, squareToAnim);
+		
+	}
+	
 }
 
 

@@ -75,6 +75,7 @@ function board_undo_move(board) {
 
 	//Switch W2M
 	b[board_other_squares.white_to_move] = whiteMoved;
+	game_set_player_control(b[board_other_squares.white_to_move]);
 	
 	//Update Threats
 	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);

@@ -9,3 +9,4 @@ ds_grid_destroy(boardSquareDiagonals);
 ds_map_destroy(pickedUpPieceLegalMoves);
 ds_map_destroy(threatMap);
 ds_map_destroy(restrictedMoves);
+ds_map_destroy(animations);

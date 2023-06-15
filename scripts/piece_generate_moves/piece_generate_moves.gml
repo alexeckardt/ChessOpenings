@@ -39,7 +39,7 @@ function piece_generate_moves(boardArray, mapToFill, threatMap, restrictedMoves,
 			break;
 					
 		case piece.type_king:
-			board_generate_king_moves(boardArray, mapToFill, threatMap, source);
+			board_generate_king_moves(boardArray, mapToFill, threatMap, source, restrictedMoves);
 			doRestrict = false;
 			break;
 			

@@ -5,23 +5,27 @@ var board = game.myBoard;
 if (instance_exists(board)) {
 	
 	
-	var myTurn = (!game.playerHasControl && board.whiteToMove == isWhite && !board.gameOver);
+	var myTurn = (!game.playerHasControl && board_white_to_play(board) == isWhite && !board.gameOver);
 
 	if (myTurn) {
 		
 		thinkingTimeLeft--;
 		if (thinkingTimeLeft < 0) {
 			//Get All Possible Moves (Side Effect, myMovesList is populated).
-			ds_list_clear(myMovesList);
-			//agent_get_all_possible_moves(board, myMovesList, isWhite);
+			
+			var moves = board_generate_moves_as_dic(board);
 	
 			//Decide
-			var s = ds_list_size(myMovesList);
+			var s = ds_map_size(moves);
 			var moveMaking = irandom(s-1); // 
-			var move = myMovesList[| moveMaking];
-	
+			var move = ds_map_find_first(moves);
+			
+			repeat(moveMaking) {
+				move = ds_map_find_next(moves, move); //Continue;	
+			}
+			
 			// Move
-			//board_make_move(board, move);
+			board_make_move(board, move);
 	
 			//
 			//Check fro Game over

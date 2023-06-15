@@ -12,7 +12,7 @@ function board_attempt_move(board, move) {
 	
 	// Make move if Legal
 	if (legal) {
-		board_make_move(board, move);
+		board_make_move(board, move, false); //dragged, so instant snap
 	}	
 	
 	// Cleanup

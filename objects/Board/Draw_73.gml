@@ -24,7 +24,6 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	if (ds_map_exists(threatMap, sqrr)) {
 		col = merge_color(col, c_red, 0.25);
 	}
-	
 	if (ds_map_exists(restrictedMoves, sqrr)) {
 		col = merge_color(col, c_green, 0.5);
 	}
@@ -68,6 +67,12 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	// Decide
 	var row = sqrr div boardWidth;
 	var col = sqrr - row*8;
+	
+	// Replace When Drawing
+	if (ds_map_exists(animations, sqrr)) {
+		col = animations[? sqrr].drawY;	
+		row = animations[? sqrr].drawX;	
+	}
 	
 	// Position
 	var xx = boardX + (col)*squareWidth + boardShakeX + pieceOnBoardOffsetX;

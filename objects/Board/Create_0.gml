@@ -12,6 +12,8 @@ board_LUT_generate_diagonals(boardSquareDiagonals);
 threatMap = ds_map_create();
 restrictedMoves = ds_map_create();
 
+animations = ds_map_create();
+
 //
 // Game State
 //
@@ -61,7 +63,7 @@ boardGoalYSpeed = 0;
 
 pieceOnBoardOffsetX = 9;
 pieceOnBoardOffsetY = 7;
-pieceSnapSpeed = 0.2;
+pieceSnapSpeed = 0.5;
 
 pickedUpSquare = -1;
 

@@ -2,7 +2,7 @@
 //
 //
 //
-function board_make_move(board, move) {
+function board_make_move(board, move, doAnimation = true) {
 
 	// Get
 	var b = board.board;
@@ -128,7 +128,13 @@ function board_make_move(board, move) {
 
 	//Switch W2M
 	b[board_other_squares.white_to_move] = !b[board_other_squares.white_to_move];
+	game_set_player_control(b[board_other_squares.white_to_move]);
 	
 	//Update Threats
 	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);
+	
+	if (doAnimation) {
+		//Add the Animation
+		board_add_animation(board, target, source);
+	}
 }

@@ -2,7 +2,7 @@
 //
 //
 //
-function board_generate_king_moves(boardArray, mapToFill, threatMap, source) {
+function board_generate_king_moves(boardArray, mapToFill, threatMap, source, restrictedMoves) {
 	
 	var lut = Board.id.squaresUntilEdgeLUT;
 	var canGoN = lut[# source, cardinal.north] > 0;
@@ -83,9 +83,16 @@ function king_move_add(boardArray, mapToFill, source, dest, threats, w2m) {
 	var empty = target == piece.none;
 	
 	if (empty || (!empty && piece_get_color(target) != w2m)) { //ensure can't take own piece
-		if (!ds_map_exists(threats, dest)) { //can't put self in check
+		if (!ds_map_exists(threats, dest) && !king_in_restricted_square(dest, restrictedMoves)) { //can't put self in check
 			ds_map_add(mapToFill, move_encode(source, dest), true);
 		}
 	}
+}
 
+function king_in_restricted_square(dest, restrictedMoves) {
+	
+	//Can't be in it
+	if !ds_map_exists(restrictedMoves, dest) return false;
+
+	return restrictedMoves[? dest] == dest; //I CAN capture peice i'm checked by.
 }

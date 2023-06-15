@@ -23,7 +23,7 @@ if (keyboard_check_pressed(ord("Z"))) {
 }
 
 //Animate Grid
-//event_user(0);
+event_user(0);
 
 var playerHasControl = Game.playerHasControl && !gameOver;
 
