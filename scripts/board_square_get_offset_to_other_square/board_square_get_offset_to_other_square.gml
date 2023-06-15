@@ -33,7 +33,7 @@ function board_square_get_offset_to_other_square(source, dest) {
 	//
 	// Difference by File (Travel across a file)
 	//
-	if (abs(difference) < 8) {
+	if (dest div 8 == source div 8) {
 		return sign(difference);	
 	}
 

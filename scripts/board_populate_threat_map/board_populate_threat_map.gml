@@ -65,6 +65,7 @@ function board_populate_threat_map(boardArray, threatMap, restrictedMovesMap) {
 		//
 		// Get direction from them to king. ASSUMPTION: There is a path, because both these squares look at eachother.
 		var checkedDirection = board_square_get_offset_to_other_square(squareCheckedBy, kingSquare);
+		var hitKingSquare = false;
 		if (checkedDirection != 0) {
 		
 			// Loop, Get all squares on this path
@@ -72,7 +73,20 @@ function board_populate_threat_map(boardArray, threatMap, restrictedMovesMap) {
 			for (var r = 0; r < 8; r++) {
 				
 				var sid = squareCheckedBy + r*checkedDirection;
-				ds_map_add(restrictedMovesMap, sid, true);
+				
+				var sidRank = sid div 8;
+				var sidFile = sid - sidRank*8;
+				
+				//Exit Next
+				if (sidFile == 0 || sidFile == 7 || sidRank == 0 || sidRank == 7) {
+					r = 100;	
+				}
+				
+				ds_map_add(restrictedMovesMap, sid, hitKingSquare);
+				
+				if (sid == kingSquare) {
+					hitKingSquare = true;	
+				}
 				
 			}
 			

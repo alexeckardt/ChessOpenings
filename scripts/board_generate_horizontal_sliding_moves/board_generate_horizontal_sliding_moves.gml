@@ -8,9 +8,6 @@ function board_generate_horizontal_sliding_moves(boardArray, map, sourceSquare, 
 	var lut = Board.id.squaresUntilEdgeLUT;
 	var w2m = boardArray[board_other_squares.white_to_move];
 	
-	//Get
-	var restrict = !ds_map_empty(restrictedMoves);
-	
 	// Loop Over All Directions
 	for (var i = 0; i < 4; i++) {
 		
@@ -36,7 +33,7 @@ function board_generate_horizontal_sliding_moves(boardArray, map, sourceSquare, 
 			}
 			
 			//Add Move
-			if (!restrict || ds_map_exists(restrictedMoves, targetSquare)) { // In Check Restrictions
+			if (board_square_would_block_check(restrictedMoves, targetSquare)) { // In Check Restrictions
 				if (!board_piece_is_pinned(boardArray, threatMap, sourceSquare, targetSquare)) {
 					var m = move_encode(sourceSquare, targetSquare);
 					ds_map_add(map, m, true);

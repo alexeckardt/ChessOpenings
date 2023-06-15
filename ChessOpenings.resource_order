@@ -65,6 +65,7 @@
     {"name":"enum_board_other_squares","order":3,"path":"scripts/enum_board_other_squares/enum_board_other_squares.yy",},
     {"name":"enum_fen","order":18,"path":"scripts/enum_fen/enum_fen.yy",},
     {"name":"board_undo_move","order":23,"path":"scripts/board_undo_move/board_undo_move.yy",},
+    {"name":"board_square_would_block_check","order":28,"path":"scripts/board_square_would_block_check/board_square_would_block_check.yy",},
     {"name":"board_generate_king_moves","order":6,"path":"scripts/board_generate_king_moves/board_generate_king_moves.yy",},
     {"name":"board_generate_horizontal_sliding_moves","order":1,"path":"scripts/board_generate_horizontal_sliding_moves/board_generate_horizontal_sliding_moves.yy",},
     {"name":"sCursor","order":1,"path":"sprites/sCursor/sCursor.yy",},

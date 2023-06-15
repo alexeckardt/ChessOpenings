@@ -92,6 +92,7 @@
     {"id":{"name":"enum_fen","path":"scripts/enum_fen/enum_fen.yy",},},
     {"id":{"name":"board_undo_move","path":"scripts/board_undo_move/board_undo_move.yy",},},
     {"id":{"name":"square_number_from_id","path":"scripts/square_number_from_id/square_number_from_id.yy",},},
+    {"id":{"name":"board_square_would_block_check","path":"scripts/board_square_would_block_check/board_square_would_block_check.yy",},},
     {"id":{"name":"board_generate_king_moves","path":"scripts/board_generate_king_moves/board_generate_king_moves.yy",},},
     {"id":{"name":"board_generate_horizontal_sliding_moves","path":"scripts/board_generate_horizontal_sliding_moves/board_generate_horizontal_sliding_moves.yy",},},
     {"id":{"name":"sCursor","path":"sprites/sCursor/sCursor.yy",},},

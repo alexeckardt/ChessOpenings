@@ -22,7 +22,11 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	
 	//Draw If Threat Square
 	if (ds_map_exists(threatMap, sqrr)) {
-		col = merge_color(col, c_red, 0.5);
+		col = merge_color(col, c_red, 0.25);
+	}
+	
+	if (ds_map_exists(restrictedMoves, sqrr)) {
+		col = merge_color(col, c_green, 0.5);
 	}
 	
 	// Draw Board
