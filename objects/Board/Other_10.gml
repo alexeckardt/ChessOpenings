@@ -40,6 +40,18 @@ if (!ds_map_empty(animations)) {
 if (gameOver) {
 	gameOverTime++;
 	
+	if (!generatedPiecesReference) {
+		generatedPiecesReference = true;
+		
+		for (var s = 0; s < 64; s++) {
+		
+			if (board[s] != piece.none) {
+				ds_list_add(piecesReference, s);	
+			}
+		
+		}
+	}
+	
 	if (gameOverTime > room_speed*0.5) {
 		
 		//Start Blowing Up Peices
@@ -51,26 +63,27 @@ if (gameOver) {
 			// We no longer need references, so let's throw them all out, so no recycle
 			
 			var p = -1;
+			var pSquare = -1;
 			while (p == -1 && ds_list_size(piecesReference) > 0) {
 				
 				var pos = irandom(ds_list_size(piecesReference)-1);
-				var pp = piecesReference[| pos];
-				var testPeice = piece_get_from_square(id, pp);
+				pSquare = piecesReference[| pos];
+	
+				var pp = board[pSquare];
 	
 				//pop
 				ds_list_delete(piecesReference, pos);
 				
 				//Choose to destroy
-				if (testPeice.white == !whiteIsWinner || stalemate) {
-					p = testPeice;	
+				if (piece_get_color(pp) == !whiteIsWinner || stalemate) {
+					p = pp;	
 				}
 			}
 			
 			//Check we got one
 			if (p != -1) {
-				p.explode(id);
-				board[# p.rank, p.file] = emptyPiece
-				delete p;
+				piece_create_death_explosion(id, pSquare);
+				board[pSquare] = piece.none;
 			}
 		}
 		

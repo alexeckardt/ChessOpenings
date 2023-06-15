@@ -37,6 +37,9 @@ function board_setup(fen) {
 	b.board[board_other_squares.white_castle_queenside] = false;
 	b.board[board_other_squares.king_position] = -1;
 	
+	b.generatedPiecesReference = false;
+	b.gameOver = false;
+	
 	//
 	//
 	//fen sequence 1: placement

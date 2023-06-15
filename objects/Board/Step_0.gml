@@ -33,7 +33,6 @@ mouseSquareIndexX = (mouse_x - boardX) div squareWidth;
 mouseSquareIndexY = (mouse_y - boardY) div squareWidth;
 var mouseSquareId = mouseSquareIndexX + mouseSquareIndexY*8;
 
-
 // Pickup Square (If Mouse Good)
 if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8 
 && mouseSquareIndexY >= 0 && mouseSquareIndexY < 8) {

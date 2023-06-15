@@ -103,7 +103,7 @@ for (var parts = 0; parts < s; parts++) {
 	
 	//Get Info
 	var partData = particles[| parts];
-	partData.draw(boardX, boardY);
+	partData.draw(boardX + pieceOnBoardOffsetX, boardY + pieceOnBoardOffsetY, squareWidth);
 	
 }
 

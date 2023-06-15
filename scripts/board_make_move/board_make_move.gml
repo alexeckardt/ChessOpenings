@@ -2,7 +2,7 @@
 //
 //
 //
-function board_make_move(board, move, doAnimation = true) {
+function board_make_move(board, move, doAnimation = true, updateEndGameState = true) {
 
 	// Get
 	var b = board.board;
@@ -133,8 +133,38 @@ function board_make_move(board, move, doAnimation = true) {
 	//Update Threats
 	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);
 	
+	//
 	if (doAnimation) {
 		//Add the Animation
 		board_add_animation(board, target, source);
+	}
+	
+	if (updateEndGameState) {
+
+		//Make Moves
+		var moves = board_generate_moves_as_dic(board);
+	
+		//Empty! Game Over
+		if (ds_map_empty(moves)) {
+			board.gameOver = true;
+			
+			//Determine Who Wins
+			var kingSquare = b[board_other_squares.king_position];
+			
+			// Win State
+			var sm =!ds_map_exists(board.restrictedMoves, kingSquare);
+			var whiteWins = !b[board_other_squares.white_to_move];
+			board.stalemate = sm;
+			board.whiteIsWinner = whiteWins;
+			
+			// Game Set Background Color
+			var g = Game.id;
+			
+			var c = (whiteWins) ? g.winnerColWhite : g.winnerColBlack;
+			c = (sm) ? g.winnerColStale : c;
+			
+			g.winnerCol = c;
+		}
+	
 	}
 }

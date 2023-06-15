@@ -6,3 +6,5 @@ var mx = mouse_x / room_width * w;
 var my = mouse_y / room_height * h;
 
 draw_sprite(sCursor, 0, mx, my);
+
+draw_text(20, 20, backgroundGameOverAlpha);

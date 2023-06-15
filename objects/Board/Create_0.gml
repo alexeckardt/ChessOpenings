@@ -78,6 +78,8 @@ pickedUpPieceLegalMoves = ds_map_create();
 
 // Particles
 particles = ds_list_create();
+piecesReference = ds_list_create();
+generatedPiecesReference = false;
 
 flippedBoard = false;
 wasBoardJustFlipped = false;

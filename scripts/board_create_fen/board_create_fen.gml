@@ -14,15 +14,17 @@ function board_create_fen(board) {
 		//Loop over row
 		for (var i = 0; i < 8; i++) {
 			
-			if (piece_exists_at(board, i, j)) {
+			var sqrr = i + j*8;
+			
+			if (board.board[sqrr]) {
 				
 				//Add string
 				if (emptyStreak != 0) {
-					fen += string(emptyStreak)	
+					fen += string(emptyStreak);
 				}
 				
-				var p = board.board[# j, i];
-				fen += piece_get_fen_symbol(p.type, p.white);
+				var p = board.board[sqrr];
+				fen += piece_get_fen_symbol(piece_get_type(p), piece_get_color(p));
 				emptyStreak = 0;
 				
 				
@@ -44,20 +46,20 @@ function board_create_fen(board) {
 	//
 	// 2: Who Plays
 	fen += " ";
-	fen += (board.whiteToMove) ? chr(fen_notation.to_move_white) : chr(fen_notation.to_move_black); 
+	fen += (board.board[board_other_squares.white_to_move]) ? chr(fen_notation.to_move_white) : chr(fen_notation.to_move_black); 
 	fen += " ";
 
 
 	//
 	//
-	fen += (board.whiteCastleKingside) ? chr(fen_notation.castle_kingside_white) : ""; 
-	fen += (board.whiteCastleQueenside) ? chr(fen_notation.castle_queenside_white) : ""; 
-	fen += (board.blackCastleKingside) ? chr(fen_notation.castle_kingside_black) : ""; 
-	fen += (board.blackCastleQueenside) ? chr(fen_notation.castle_queenside_black) : ""; 
+	fen += (board.board[board_other_squares.white_castle_kingside]) ? chr(fen_notation.castle_kingside_white) : ""; 
+	fen += (board.board[board_other_squares.white_castle_queenside]) ? chr(fen_notation.castle_queenside_white) : ""; 
+	fen += (board.board[board_other_squares.black_castle_kingside]) ? chr(fen_notation.castle_kingside_black) : ""; 
+	fen += (board.board[board_other_squares.black_castle_queenside]) ? chr(fen_notation.castle_queenside_black) : ""; 
 	
 	//
 	// Enpassant Square
-	fen += " " + square_id_from_number(board.enpassantSquare);
+	fen += " " + square_id_from_number(board.board[board_other_squares.enpassant_square]);
 	
 	//
 	//
