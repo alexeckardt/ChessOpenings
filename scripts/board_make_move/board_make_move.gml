@@ -33,6 +33,10 @@ function board_make_move(board, move) {
 	//Ensure Pawn
 	if (type == piece.type_pawn) {
 		
+		//
+		// Enpassant
+		//
+		
 		var sourcerank = source div 8;
 		var rank = target div 8;
 		
@@ -54,6 +58,13 @@ function board_make_move(board, move) {
 			//Enpassant Happened, Kill Peice
 			var pawnSquare = (rank == 2) ? target+8 : target-8;
 			b[pawnSquare] = piece.none;
+		}
+		
+		//
+		// Promotion
+		//
+		if (rank == 0 || rank == 8) {
+			b[target] = (rank == 0) ? piece.white_queen : piece.black_queen;
 		}
 	}
 
@@ -99,6 +110,7 @@ function board_make_move(board, move) {
 		b[board_other_squares.white_castle_queenside] = false;
 	if (source == 63 || target == 63)
 		b[board_other_squares.white_castle_kingside] = false;
+
 
 	//Push to Stack
 	var stack = board.movesStack;

@@ -4,13 +4,12 @@
 //
 function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, restrictedMoves) {
 
-	// We don't need the LUT here!
-
 	var w2m = boardArray[board_other_squares.white_to_move];
 	var startingRank = (w2m) ? 6 : 1;
 	var marchDir = (w2m) ? cardinal.north : cardinal.south;
-	
 	var marchOffset = cardinal_get_incr_y(marchDir);
+	
+	var file = sourceSquare mod 8;
 	
 	//
 	// Advances
@@ -46,17 +45,24 @@ function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, res
 	var targetWest = sourceSquare + marchOffset + cardinal_get_incr_x(cardinal.west);
 	var ptarget;
 	
+	// Check If captures allowed
+	
+	
 	//EAST
-	ptarget = boardArray[targetEast];
-	//Check Peice is capturable, then add square
-	if (ptarget != piece.none && piece_get_color(ptarget) == !w2m)
-		ds_map_add(map, move_encode(sourceSquare,targetEast), true);
+	if (file != 0) {
+		ptarget = boardArray[targetEast];
+		//Check Peice is capturable, then add square
+		if (ptarget != piece.none && piece_get_color(ptarget) == !w2m)
+			ds_map_add(map, move_encode(sourceSquare,targetEast), true);
+	}
 		
 	//WEST
-	ptarget = boardArray[targetWest];
-	//Check Peice is capturable, then add square
-	if (ptarget != piece.none && piece_get_color(ptarget) == !w2m)
-		ds_map_add(map, move_encode(sourceSquare,targetWest), true);
+	if (file != 7) {
+		ptarget = boardArray[targetWest];
+		//Check Peice is capturable, then add square
+		if (ptarget != piece.none && piece_get_color(ptarget) == !w2m)
+			ds_map_add(map, move_encode(sourceSquare,targetWest), true);
+	}
 
 	//
 	// Enpassant Square -- A Peice WILL Be There because of the double march 
