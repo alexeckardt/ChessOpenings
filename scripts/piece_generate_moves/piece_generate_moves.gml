@@ -18,11 +18,11 @@ function piece_generate_moves(boardArray, mapToFill, threatMap, restrictedMoves,
 			return;
 				
 		case piece.type_pawn:
-			board_generate_pawn_moves(boardArray, mapToFill, source,threatMap);
+			board_generate_pawn_moves(boardArray, mapToFill, source, threatMap, restrictedMoves);
 			break;
 				
 		case piece.type_knight:
-			board_generate_knight_moves(boardArray, mapToFill, source,threatMap);
+			board_generate_knight_moves(boardArray, mapToFill, source, threatMap, restrictedMoves);
 			break;
 					
 		case piece.type_bishop:

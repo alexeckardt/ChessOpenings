@@ -47,24 +47,24 @@ function board_generate_king_moves(boardArray, mapToFill, threatMap, source) {
 		
 
 	//Castle
-	if (boardArray[board_other_squares.white_to_move]) {
-			
-		if (boardArray[board_other_squares.white_castle_kingside]) {
-			ds_map_add(mapToFill, move_encode(source, source+2), true);
+	if (!ds_map_exists(threatMap, source)) {
+		
+		var w2m = boardArray[board_other_squares.white_to_move];
+		var canKingside = (w2m) ? boardArray[board_other_squares.white_castle_kingside] 
+								: boardArray[board_other_squares.black_castle_kingside];
+		var canQueenside = (w2m) ? boardArray[board_other_squares.white_castle_queenside] 
+								: boardArray[board_other_squares.black_castle_queenside];
+	
+		if (canKingside) {
+			if (!ds_map_exists(threatMap, source+1)){ // can't castle thru threat
+				king_move_add(mapToFill, source, source+2, threatMap);
+			}
 		}
-		if (boardArray[board_other_squares.white_castle_queenside]) {
-			ds_map_add(mapToFill, move_encode(source, source-2), true);
+		if (canQueenside) {
+			if (!ds_map_exists(threatMap, source-1)){ // can't castle thru threat
+			king_move_add(mapToFill, source, source-2, threatMap);
+			}
 		}
-			
-	} else {
-
-		if (boardArray[board_other_squares.black_castle_kingside]) {
-			ds_map_add(mapToFill, move_encode(source, source+2), true);
-		}
-		if (boardArray[board_other_squares.black_castle_queenside]) {
-			ds_map_add(mapToFill, move_encode(source, source-2), true);
-		}
-
 	}
 }
 

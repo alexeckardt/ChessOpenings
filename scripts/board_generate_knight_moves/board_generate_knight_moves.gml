@@ -2,7 +2,7 @@
 //
 //
 //
-function board_generate_knight_moves(boardArray, map, sourceSquare) {
+function board_generate_knight_moves(boardArray, map, sourceSquare, threatMap, restrictedMoves) {
 
 	var lut = Board.id.squaresUntilEdgeLUT;
 	var distN = lut[# sourceSquare, cardinal.north];
@@ -23,12 +23,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distN >= 2) {
 		if (distE >= 1) {
 			var moveTarget = sourceSquare + northOff*2 + eastOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 		
 		if (distW >= 1) {
 			var moveTarget = sourceSquare + northOff*2 + westOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 	}
 	//
@@ -37,12 +37,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distS >= 2) {
 		if (distE >= 1) {
 			var moveTarget = sourceSquare + southOff*2 + eastOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 		
 		if (distW >= 1) {
 			var moveTarget = sourceSquare + southOff*2 + westOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 	}
 	//
@@ -51,12 +51,12 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distE >= 2) {
 		if (distN >= 1) {
 			var moveTarget = sourceSquare + eastOff*2 + northOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 		
 		if (distS >= 1) {
 			var moveTarget = sourceSquare + eastOff*2 + southOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 	}
 	//
@@ -65,17 +65,17 @@ function board_generate_knight_moves(boardArray, map, sourceSquare) {
 	if (distW >= 2) {
 		if (distN >= 1) {
 			var moveTarget = sourceSquare + westOff*2 + northOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)	
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)	
 		}
 		
 		if (distS >= 1) {
 			var moveTarget = sourceSquare + westOff*2 + southOff
-			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m)
+			knight_move_add(boardArray, map, sourceSquare, moveTarget, w2m, restrictedMoves, threatMap)
 		}
 	}
 }
 
-function knight_move_add(boardArray, map, sourceSquare, target, w2m) {
+function knight_move_add(boardArray, map, sourceSquare, target, w2m, restrictedMoves, threatMap) {
 	
 	//No Self Captures
 	var p = boardArray[target];
@@ -85,7 +85,15 @@ function knight_move_add(boardArray, map, sourceSquare, target, w2m) {
 		}
 	}
 	
-	//Encode and add
-	var move = move_encode(sourceSquare, target);
-	ds_map_add(map, move, true);
+	//Add Move
+	var restrict = !ds_map_empty(restrictedMoves);
+	
+	if (!restrict || ds_map_exists(restrictedMoves, target)) { // In Check Restrictions
+		if (!board_piece_is_pinned(boardArray, threatMap, sourceSquare, target)) {
+			var m = move_encode(sourceSquare, target);
+			ds_map_add(map, m, true);
+		}
+	}
+	
+	
 }

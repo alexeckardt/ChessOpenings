@@ -2,7 +2,7 @@
 //
 //
 //
-function board_generate_pawn_moves(boardArray, map, sourceSquare) {
+function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, restrictedMoves) {
 
 	// We don't need the LUT here!
 

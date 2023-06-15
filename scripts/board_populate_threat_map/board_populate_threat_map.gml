@@ -78,6 +78,7 @@ function board_populate_threat_map(boardArray, threatMap, restrictedMovesMap) {
 			
 		} else {
 			ds_map_add(restrictedMovesMap, kingSquare, true); //Hack -- if the king is in check by a knight it is unblockable	
+			ds_map_add(restrictedMovesMap, squareCheckedBy, true);
 		}
 	}
 	
