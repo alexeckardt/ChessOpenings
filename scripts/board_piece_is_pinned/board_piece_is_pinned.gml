@@ -21,7 +21,7 @@ function board_piece_is_pinned(boardArray, threatMap, sourceSquare, targetSquare
 	while (squareThreatening != -1) {
 	
 		//Get Square
-		var squareCheck = squareThreatening mod 64;
+		var theThreatSquare = squareThreatening mod 64;
 		if (squareThreatening < 64) {
 			squareThreatening = -1;//last check
 		} else {
@@ -31,7 +31,7 @@ function board_piece_is_pinned(boardArray, threatMap, sourceSquare, targetSquare
 				
 		//
 		// Get Direction
-		var attackerDirection = board_square_get_offset_to_other_square(squareCheck, sourceSquare);
+		var attackerDirection = board_square_get_offset_to_other_square(theThreatSquare, sourceSquare);
 		if (attackerDirection == directionToKing) {
 			
 			// Okay, Peice is Pinned. Is the move stay within the pin?

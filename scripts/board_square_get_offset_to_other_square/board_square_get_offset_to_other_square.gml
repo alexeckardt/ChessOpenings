@@ -10,13 +10,6 @@ function board_square_get_offset_to_other_square(source, dest) {
 	var difference = dest - source;
 	
 	//
-	// Difference by File (Travel across a file)
-	//
-	if (abs(difference) < 8) {
-		return sign(difference);	
-	}
-	
-	//
 	// Difference by Rank (Travel across a file)
 	//
 	if (abs(difference) mod 8 == 0) {
@@ -24,17 +17,24 @@ function board_square_get_offset_to_other_square(source, dest) {
 	}
 	
 	//
-	// Difference by Rank (Travel across a file)
+	// Difference by Diagonal A
 	//
 	if (abs(difference) mod 7 == 0) {
 		return sign(difference)*7;	
 	}
 	
 	//
-	// Difference by Rank (Travel across a file)
+	// Difference by Diagonal B
 	//
 	if (abs(difference) mod 9 == 0) {
 		return sign(difference)*9;	
+	}
+	
+	//
+	// Difference by File (Travel across a file)
+	//
+	if (abs(difference) < 8) {
+		return sign(difference);	
 	}
 
 	return 0; // No Direct Path

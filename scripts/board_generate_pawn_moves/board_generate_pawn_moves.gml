@@ -16,7 +16,7 @@ function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, res
 	
 	// Add regular advance square
 	if (boardArray[sourceSquare + marchOffset] == piece.none)
-		ds_map_add(map, move_encode(sourceSquare,sourceSquare+marchOffset), true);
+		pawn_add_move(boardArray, map, restrictedMoves, threatMap, sourceSquare, sourceSquare+marchOffset);
 	
 	// Add STARTING Double Advance
 	if (sourceSquare div 8 == startingRank) {
@@ -35,7 +35,7 @@ function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, res
 		//
 		if (boardArray[sourceSquare + marchOffset] == piece.none)
 		&& (boardArray[sourceSquare + marchOffset*2] == piece.none)
-			ds_map_add(map, move_encode(sourceSquare,sourceSquare+marchOffset*2), true);
+			pawn_add_move(boardArray, map, restrictedMoves, threatMap, sourceSquare, sourceSquare+marchOffset*2);
 	}
 	
 	//
@@ -53,7 +53,7 @@ function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, res
 		ptarget = boardArray[targetEast];
 		//Check Peice is capturable, then add square
 		if (ptarget != piece.none && piece_get_color(ptarget) == !w2m)
-			ds_map_add(map, move_encode(sourceSquare,targetEast), true);
+		pawn_add_move(boardArray, map, restrictedMoves, threatMap, sourceSquare, targetEast);
 	}
 		
 	//WEST
@@ -61,7 +61,7 @@ function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, res
 		ptarget = boardArray[targetWest];
 		//Check Peice is capturable, then add square
 		if (ptarget != piece.none && piece_get_color(ptarget) == !w2m)
-			ds_map_add(map, move_encode(sourceSquare,targetWest), true);
+			pawn_add_move(boardArray, map, restrictedMoves, threatMap, sourceSquare, targetWest);
 	}
 
 	//
@@ -72,7 +72,16 @@ function board_generate_pawn_moves(boardArray, map, sourceSquare, threatMap, res
 	var enpassantSquare = boardArray[board_other_squares.enpassant_square];
 	if (targetEast == enpassantSquare || targetWest == enpassantSquare)
 		// Add Enpassant Square
-		ds_map_add(map, move_encode(sourceSquare,enpassantSquare), true);
-	
+		pawn_add_move(boardArray, map, restrictedMoves, threatMap, sourceSquare, enpassantSquare);
+}
 
+function pawn_add_move(boardArray, map, restrictedMoves, threatMap, sourceSquare, target) {
+	var restrict = !ds_map_empty(restrictedMoves);
+		
+	if (!restrict || ds_map_exists(restrictedMoves, target)) { // In Check Restrictions
+		if (!board_piece_is_pinned(boardArray, threatMap, sourceSquare, target)) {
+			ds_map_add(map, move_encode(sourceSquare, target), true);
+		}
+	}
+			
 }
