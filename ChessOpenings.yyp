@@ -101,6 +101,7 @@
     {"id":{"name":"board_create_fen","path":"scripts/board_create_fen/board_create_fen.yy",},},
     {"id":{"name":"piece_generate_moves","path":"scripts/piece_generate_moves/piece_generate_moves.yy",},},
     {"id":{"name":"board_LUT_generate_diagonals","path":"scripts/board_LUT_generate_diagonals/board_LUT_generate_diagonals.yy",},},
+    {"id":{"name":"board_recurssion_test","path":"scripts/board_recurssion_test/board_recurssion_test.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

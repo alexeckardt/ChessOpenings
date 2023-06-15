@@ -6,8 +6,15 @@ if (keyboard_check_pressed(vk_space)) {
 	//flippedBoard = !flippedBoard;	
 	//wasBoardJustFlipped = true;
 	
-	for (var i = 1; i < 4; i++) {
-		show_debug_message(string(i) + ":" + string(board_recurssion_test(id, i)));
+	for (var i = 1; i < 7; i++) {
+		
+		var time = get_timer();
+		var foundPositions = board_recurssion_test(id, i);
+		var time2 = get_timer();
+		
+		var delta = time2 - time;
+		
+		show_debug_message(string(foundPositions) + " : " + string(delta));
 	}
 }
 

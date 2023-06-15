@@ -73,5 +73,6 @@
     {"name":"board_create_fen","order":13,"path":"scripts/board_create_fen/board_create_fen.yy",},
     {"name":"piece_generate_moves","order":3,"path":"scripts/piece_generate_moves/piece_generate_moves.yy",},
     {"name":"board_LUT_generate_diagonals","order":1,"path":"scripts/board_LUT_generate_diagonals/board_LUT_generate_diagonals.yy",},
+    {"name":"board_recurssion_test","order":27,"path":"scripts/board_recurssion_test/board_recurssion_test.yy",},
   ],
 }

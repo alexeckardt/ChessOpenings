@@ -36,6 +36,16 @@ function board_piece_is_pinned(boardArray, threatMap, sourceSquare, targetSquare
 			
 			// Okay, Peice is Pinned. Is the move stay within the pin?
 			
+			//Ensure No Piece Behind Me
+			var sqrr = sourceSquare;
+			while( sqrr != kingSquare) {
+				sqrr += attackerDirection;
+				if (boardArray[sqrr] != piece.none) {
+					return false; // Not Pinned
+				}
+			}
+			
+			
 			var moveDir = board_square_get_offset_to_other_square(sourceSquare, targetSquare);
 			if (abs(moveDir) == abs(attackerDirection)) {
 				return false; // then the MOVE is not pinned.
