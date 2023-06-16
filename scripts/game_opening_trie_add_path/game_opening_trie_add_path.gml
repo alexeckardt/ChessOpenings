@@ -22,7 +22,7 @@ function game_opening_trie_add_path(gamePath, rootNode) {
 			var t_str = string_digits(currentMove);
 			var moveId = real(t_str);
 			
-			var newNode = currentNode.get_or_add_child(moveId);
+			var newNode = trienode_get_or_add_child(currentNode, moveId);
 			currentNode = newNode; //Continue down this path
 			
 			currentMove = ""; //Reset

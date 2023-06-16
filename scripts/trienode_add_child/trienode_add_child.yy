@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "TrieNode",
+  "name": "trienode_add_child",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
