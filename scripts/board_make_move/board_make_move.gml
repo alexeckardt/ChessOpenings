@@ -177,4 +177,8 @@ function board_make_move(board, move, doAnimation = true, updateEndGameState = t
 		}
 	
 	}
+	
+	// Continue opening trie if applicable
+	game_advance_trie_step(Game.id, move);
+				
 }

@@ -13,6 +13,8 @@ if (keyboard_check_pressed(ord("R"))) {
 	b = myBoard;
 	
 	myBoard.boardGoalY = myBoard.boardRestingY;
+	currentTrieNode = openingTrieRootNode;
+	lastTrieNode = undefined;
 }
 
 if (keyboard_check_pressed(ord("C"))) {

@@ -10,5 +10,5 @@ function board_add_animation(board, square, squareCameFrom) {
 	var animationData = new AnimationData(squareCameFrom, square);
 
 	//Add
-	ds_map_add(map, square, animationData);
+	map[? square] = animationData; //Override Animation
 }

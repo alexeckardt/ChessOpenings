@@ -11,9 +11,11 @@ function game_set_player_control(whiteToMove) {
 			g.playerHasControl = true;break;
 			
 		case gamemode.free_play_as_black:
+		case gamemode.openings_black:
 			g.playerHasControl = !whiteToMove;break;
 			
 		case gamemode.free_play_as_white:
+		case gamemode.openings_white:
 			g.playerHasControl = whiteToMove;break;
 			
 		case gamemode.none:

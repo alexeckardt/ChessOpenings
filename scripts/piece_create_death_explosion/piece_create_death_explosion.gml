@@ -7,8 +7,8 @@ function piece_create_death_explosion(board, square, p = -1) {
 	if (p == -1) 
 		p = board.board[square];
 	
-	var file = square mod boardWidth;
-	var rank = square div boardWidth;
+	var file = square mod board.boardWidth;
+	var rank = square div board.boardWidth;
 	
 	//Loop
 	var h = 0;

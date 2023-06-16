@@ -79,4 +79,7 @@ function board_undo_move(board) {
 	
 	//Update Threats
 	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);
+	
+	//Backstep Opening
+	game_reverse_trie_step(Game.id);
 }

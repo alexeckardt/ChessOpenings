@@ -12,8 +12,11 @@ function board_attempt_move(board, move) {
 	
 	// Make move if Legal
 	if (legal) {
-		board_make_move(board, move, true); //dragged, so instant snap
+		board_make_move(board, move, true);
 	}	
+	
+
+	
 	
 	// Cleanup
 	ds_map_destroy(legalMoves);

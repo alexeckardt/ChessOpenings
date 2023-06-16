@@ -20,8 +20,6 @@ animations = ds_map_create();
 movesStack = ds_stack_create();
 turnNumber = 0;
 whiteToMove = true;
-whiteKingSquare = -1;
-blackKingSquare = -1;
 
 kingInCheck = false;
 
@@ -63,7 +61,7 @@ boardGoalYSpeed = 0;
 
 pieceOnBoardOffsetX = 9;
 pieceOnBoardOffsetY = 7;
-pieceSnapSpeed = 0.5;
+pieceSnapSpeed = 0.35;
 
 pickedUpSquare = -1;
 

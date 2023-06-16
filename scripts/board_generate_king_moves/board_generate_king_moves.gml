@@ -20,32 +20,32 @@ function board_generate_king_moves(boardArray, mapToFill, threatMap, source, res
 	//Add North
 	if (canGoN) 
 	{
-		king_move_add(boardArray,mapToFill, source, source+northOff, threatMap, w2m);
+		king_move_add(boardArray,mapToFill, source, source+northOff, threatMap, w2m, restrictedMoves);
 		
 		if (canGoE) {
-			king_move_add(boardArray,mapToFill, source, source+northOff+eastOff, threatMap, w2m);
+			king_move_add(boardArray,mapToFill, source, source+northOff+eastOff, threatMap, w2m, restrictedMoves);
 		}
 		if (canGoW) {
-			king_move_add(boardArray,mapToFill, source, source+northOff+westOff, threatMap, w2m);
+			king_move_add(boardArray,mapToFill, source, source+northOff+westOff, threatMap, w2m, restrictedMoves);
 		}
 	}
 	//Add South
 	if (canGoS) 
 	{
-		king_move_add(boardArray,mapToFill, source, source+southOff, threatMap, w2m);
+		king_move_add(boardArray,mapToFill, source, source+southOff, threatMap, w2m, restrictedMoves);
 		
 		if (canGoE) {
-			king_move_add(boardArray,mapToFill, source, source+southOff+eastOff, threatMap, w2m);
+			king_move_add(boardArray,mapToFill, source, source+southOff+eastOff, threatMap, w2m, restrictedMoves);
 		}
 		if (canGoW) {
-			king_move_add(boardArray,mapToFill, source, source+southOff+westOff, threatMap, w2m);
+			king_move_add(boardArray,mapToFill, source, source+southOff+westOff, threatMap, w2m, restrictedMoves);
 		}
 	}
 	
 	if (canGoE) 
-		king_move_add(boardArray,mapToFill, source, source+eastOff, threatMap, w2m);
+		king_move_add(boardArray,mapToFill, source, source+eastOff, threatMap, w2m, restrictedMoves);
 	if (canGoW) 
-		king_move_add(boardArray,mapToFill, source, source+westOff, threatMap, w2m);
+		king_move_add(boardArray,mapToFill, source, source+westOff, threatMap, w2m, restrictedMoves);
 		
 
 	//Castle
@@ -59,7 +59,7 @@ function board_generate_king_moves(boardArray, mapToFill, threatMap, source, res
 		if (canKingside) {
 			if (!ds_map_exists(threatMap, source+1)){ // can't castle thru threat
 				if (boardArray[source+1] == piece.none) {
-					king_move_add(boardArray,mapToFill, source, source+2, threatMap, w2m);
+					king_move_add(boardArray,mapToFill, source, source+2, threatMap, w2m, restrictedMoves);
 				}
 			}
 		}
@@ -67,7 +67,7 @@ function board_generate_king_moves(boardArray, mapToFill, threatMap, source, res
 			if (!ds_map_exists(threatMap, source-1)){ // can't castle thru threat
 				if (boardArray[source-1] == piece.none) {
 					if (boardArray[source-3] == piece.none) { //Queenside make sure the knight is gone
-						king_move_add(boardArray,mapToFill, source, source-2, threatMap, w2m);
+						king_move_add(boardArray,mapToFill, source, source-2, threatMap, w2m, restrictedMoves);
 					}
 				}
 			}
@@ -77,7 +77,7 @@ function board_generate_king_moves(boardArray, mapToFill, threatMap, source, res
 //
 //
 //
-function king_move_add(boardArray, mapToFill, source, dest, threats, w2m) {
+function king_move_add(boardArray, mapToFill, source, dest, threats, w2m, restrictedMoves) {
 
 	var target = boardArray[dest];
 	var empty = target == piece.none;
