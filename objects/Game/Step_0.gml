@@ -11,6 +11,8 @@ if (keyboard_check_pressed(vk_f11)) {
 if (keyboard_check_pressed(ord("R"))) {
 	myBoard = board_setup(defaultFEN);	
 	b = myBoard;
+	
+	myBoard.boardGoalY = myBoard.boardRestingY;
 }
 
 if (keyboard_check_pressed(ord("C"))) {

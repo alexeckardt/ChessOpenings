@@ -36,7 +36,7 @@ function board_square_get_offset_to_other_square(source, dest) {
 	// Difference by Diagonal B
 	//
 	if (diagonal && sign(iDiff) == sign(jDiff)) {
-		return sign(iDiff)*-9;	
+		return sign(iDiff)*9;	
 	}
 	
 	//

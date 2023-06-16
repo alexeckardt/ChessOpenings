@@ -20,6 +20,16 @@ function board_make_move(board, move, doAnimation = true, updateEndGameState = t
 	var enpassantSquare = b[board_other_squares.enpassant_square]; //store
 	var moveData = new MoveData(move, pTarget, enpassantSquare, false);
 
+	// Animation
+	if (pTarget != piece.none) {
+		if (doAnimation) {
+			
+			piece_create_death_explosion(board, target, pTarget);
+			
+		}
+	}
+
+
 	//
 	//Enpassant
 	//
@@ -134,7 +144,7 @@ function board_make_move(board, move, doAnimation = true, updateEndGameState = t
 	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);
 	
 	//
-	if (doAnimation) {
+	if (doAnimation && board.pickedUpSquare != source) {
 		//Add the Animation
 		board_add_animation(board, target, source);
 	}
