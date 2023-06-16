@@ -10,5 +10,7 @@ function board_make_internal_move(b, move) {
 	//Update Board
 	b[dest] = b[source]
 	b[source] = piece.none;
+	
+	show_debug_message(move);
 
 }

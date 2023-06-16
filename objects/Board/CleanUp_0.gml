@@ -12,3 +12,4 @@ ds_map_destroy(restrictedMoves);
 ds_map_destroy(animations);
 
 ds_list_destroy(piecesReference);
+

@@ -36,3 +36,5 @@ winnerColStale = c_black;
 
 game_set_gamemode(gamemode.free_play);
 game_set_player_control(board_white_to_play(myBoard));
+
+openingTrie = game_generate_opening_trie();
