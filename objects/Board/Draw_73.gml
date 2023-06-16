@@ -54,21 +54,40 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 }
 
 //
-// Draw Peices (Temp)
+// Draw Peices
 //
-for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
-	
-	var p = board[sqrr];
-	
-	//Exit If No Peice
-	if (p == piece.none)
-		continue;
+var h = ds_grid_height(depthGrid);
+for (var ob = 0; ob < h; ob++) {
 
-	// Decide
-	var row = sqrr div boardWidth;
-	var col = sqrr - row*8;
+	var sqrr = depthGrid[# 0, ob];
 	
-	// Replace When Drawing
+	if (sqrr < 0) {
+	
+		// Negative Id means it is a particle
+		var partId = -(sqrr + 1);
+		var partData = particles[| partId];
+		
+		if (partData == undefined) continue;
+		
+		partData.draw(	boardX + boardShakeX + pieceOnBoardOffsetX,
+						boardY + boardShakeY + pieceOnBoardOffsetY, 
+						squareWidth);
+		continue;
+	
+	} 
+	
+	// Draw Peice (not particle)
+	var p = board[sqrr];
+
+	// Unknown
+	if (p == piece.none) continue;
+	
+	// Decide Row and Col
+	var square = (flippedBoard) ? 63 - sqrr : sqrr;
+	var row = square div boardWidth;
+	var col = square - row*8;
+	
+	// Replace When Drawing Animation
 	if (ds_map_exists(animations, sqrr)) {
 		col = animations[? sqrr].drawY;	
 		row = animations[? sqrr].drawX;	
@@ -77,36 +96,21 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	// Position
 	var xx = boardX + (col)*squareWidth + boardShakeX + pieceOnBoardOffsetX;
 	var yy = boardY + (row)*squareWidth + boardShakeY + pieceOnBoardOffsetY;
-
+	
 	// Pickup
 	if (pickedUpSquare == sqrr) {
 		xx = mouse_x;
 		yy = mouse_y;			
 	}
-
+	
 	//
 	var frame = piece_get_type(p);
 	var spr = (piece_get_color(p)) ? whitePiecesSprite : blackPiecesSprite;
 	
 	//Draw
 	draw_sprite(spr, frame, xx, yy);
-
-}
-
-//
-//
-// Draw the particles
-//
-//
-var s = ds_list_size(particles);
-for (var parts = 0; parts < s; parts++) {
-	
-	//Get Info
-	var partData = particles[| parts];
-	partData.draw(boardX + pieceOnBoardOffsetX, boardY + pieceOnBoardOffsetY, squareWidth);
 	
 }
-
 
 if (drawDebug) {
 	draw_set_font(fontDebug);
@@ -115,3 +119,5 @@ if (drawDebug) {
 		draw_text(10, 10 + 16*(i-64), board[i]);	
 	}
 }
+
+draw_text(30, 80, (mouse_y - boardY) / squareWidth);

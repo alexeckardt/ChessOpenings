@@ -33,9 +33,11 @@ if (!ds_map_empty(animations)) {
 		squareToAnim = ds_map_find_next(animations, squareToAnim);
 		
 	}
-	
 }
 
+//
+//
+// Particles
 
 if (gameOver) {
 	gameOverTime++;
@@ -109,31 +111,6 @@ if (gameOver) {
 		if (gameOverTimeNoParticles > room_speed*2) {
 			instance_destroy();
 			exit;
-		}
-	}
-}
-
-
-//Sort gird. We then draw through the grid.
-ds_grid_sort(depthGrid, 1, true);
-
-var s = ds_list_size(particles);
-for (var parts = 0; parts < s; parts++) {
-	
-	//Get Info
-	var partData = particles[| parts];
-	if (!partData.stopUpdate) {
-		partData.update();
-	} else {
-		partData.lifeLeft--;
-		
-		//End
-		if (partData.lifeLeft < 0) {
-			ds_list_delete(particles, parts)
-			s--;
-			parts--;
-			
-			delete partData;
 		}
 	}
 }

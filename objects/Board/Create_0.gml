@@ -89,6 +89,7 @@ wasBoardJustFlipped = false;
 
 //Drawing Depth
 depthGrid = ds_grid_create(2, 64);
+pieceDepthOffset = -2 / squareWidth;
 
 //
 // Selection
