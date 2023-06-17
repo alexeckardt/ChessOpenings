@@ -1,5 +1,6 @@
 /// @description 
 
+exiting = false; //If i'm done, set by Game.
 
 //
 // Board Representation
@@ -37,7 +38,8 @@ gameOverTimeNoParticles = 0;
 //
 // Drawing
 //
-drawDebug = true;
+drawDebug = false;
+drawBoardThreats = false;
 
 boardWidth = 8;
 squareWidth = 18;
@@ -56,7 +58,7 @@ boardRestingY = room_height div 2 + off;
 boardX = boardRestingX;
 boardGoalY = boardRestingY;
 
-boardY = boardRestingY;//room_height*2;
+boardY = room_height*2;
 boardGoalYSpeed = 0;
 
 pieceOnBoardOffsetX = 9;

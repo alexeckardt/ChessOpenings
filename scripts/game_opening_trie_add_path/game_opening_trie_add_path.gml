@@ -8,9 +8,9 @@ function game_opening_trie_add_path(gamePath, rootNode) {
 	var currentMove = "";
 	var reading = 1;
 	var stringLength = string_length(gamePath);
-	var currentNode = rootNode;
 	
-	var currentLineIsMistake = false;
+	var currentNode = rootNode;
+	var lastNode = undefined;
 
 	while (reading <= stringLength) {
 		
@@ -25,6 +25,7 @@ function game_opening_trie_add_path(gamePath, rootNode) {
 			var moveId = real(t_str);
 			
 			var newNode = trienode_get_or_add_child(currentNode, moveId);
+			lastNode = currentNode;
 			currentNode = newNode; //Continue down this path
 			
 			currentMove = ""; //Reset
@@ -47,9 +48,9 @@ function game_opening_trie_add_path(gamePath, rootNode) {
 
 	//
 	// Set
-	if (currentLineIsMistake) {
-		currentNode.isMistake = true;	
-	}
-
+	lastNode.final = true;
+	lastNode.finalAsWhite = true;
+	currentNode.final = true;
+	currentNode.finalAsWhite = false;
 
 }

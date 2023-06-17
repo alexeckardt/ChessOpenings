@@ -6,7 +6,7 @@ var board = game.myBoard;
 if (instance_exists(board)) {
 	
 	var w2p = board_white_to_play(board);
-	var myTurn = (!game.playerHasControl && w2p == isWhite && !board.gameOver);
+	var myTurn = (!game.playerHasControl && w2p == isWhite && !board.gameOver && !board.exiting);
 
 	if (myTurn) {
 		

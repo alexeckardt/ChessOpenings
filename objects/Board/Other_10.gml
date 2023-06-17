@@ -104,13 +104,17 @@ if (gameOver) {
 		gameOverTimeNoParticles += (ds_list_size(particles) == 0);
 		if (gameOverTimeNoParticles > room_speed) {
 			
-			boardGoalY += boardGoalYSpeed;
-			boardGoalYSpeed -= 0.5; //accelerate
+			exiting = true;
 		}
-		
-		if (gameOverTimeNoParticles > room_speed*2) {
-			instance_destroy();
-			exit;
-		}
+	}
+}
+
+if (exiting) {
+	boardGoalY += boardGoalYSpeed;
+	boardGoalYSpeed -= 0.5; //accelerate	
+	
+	if (boardY < -room_height*2) {
+		instance_destroy();
+		exit;
 	}
 }

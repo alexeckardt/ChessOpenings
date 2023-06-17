@@ -15,7 +15,8 @@ function game_set_gamemode(mode) {
 	
 	//Set
 	g.gameMode = mode;
-	
+	g.gameModeOpening = false;
+			
 	//Create Agents
 	switch (mode) {
 		default:
@@ -60,6 +61,7 @@ function game_set_gamemode(mode) {
 			
 			g.agentBlack = a;
 			g.followOpeningTrie = true;
+			g.gameModeOpening = true;
 		break;
 		
 		case gamemode.openings_white:
@@ -69,6 +71,7 @@ function game_set_gamemode(mode) {
 			
 			g.agentWhite = a;
 			g.followOpeningTrie = true;
+			g.gameModeOpening = true;
 		break;
 		
 	}

@@ -87,6 +87,23 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 			
 			//Flush Drawing
 			ds_map_clear(pickedUpPieceLegalMoves);
+			
+			//
+			// Game Mode
+			var g = Game.id;
+			var playingOpeningGM = g.gameModeOpening;
+			if (playingOpeningGM) {
+				
+				// See if Move Caused Fail or Win
+				if (g.currentTrieNode == undefined) || (g.currentTrieNode.final == true) {
+					
+					g.finishStreak = true;
+					g.wonStreak = (g.currentTrieNode != undefined);
+					
+				}
+				
+			}
+			
 		}
 		
 	}

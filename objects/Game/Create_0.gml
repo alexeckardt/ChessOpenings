@@ -37,13 +37,20 @@ winnerColStale = c_black;
 winnerColComplete = #4bb952;
 winnerColFail = #731919;
 
-
 openingTrieRootNode = game_generate_opening_trie();
 currentTrieNode = openingTrieRootNode;
 lastTrieNode = undefined;
 followOpeningTrie = false;
 
-
+gameModeOpening = false;
 game_set_gamemode(gamemode.openings_white);
 game_set_player_control(board_white_to_play(myBoard));
 
+//
+//
+//
+
+finishStreak = false;
+wonStreak = false;
+finishStreakTime = room_speed;
+finishStreakTimeLeft = finishStreakTime;

@@ -21,11 +21,13 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	var yy = boardY + j*squareWidth + boardShakeY;
 	
 	//Draw If Threat Square
-	if (ds_map_exists(threatMap, sqrr)) {
-		col = merge_color(col, c_red, 0.25);
-	}
-	if (ds_map_exists(restrictedMoves, sqrr)) {
-		col = merge_color(col, c_green, 0.5);
+	if (drawBoardThreats) {
+		if (ds_map_exists(threatMap, sqrr)) {
+			col = merge_color(col, c_red, 0.25);
+		}
+		if (ds_map_exists(restrictedMoves, sqrr)) {
+			col = merge_color(col, c_green, 0.5);
+		}
 	}
 	
 	// Draw Board
@@ -112,12 +114,14 @@ for (var ob = 0; ob < h; ob++) {
 	
 }
 
+
 if (drawDebug) {
 	draw_set_font(fontDebug);
 	
 	for (var i = 64; i < 71; i++) {	
 		draw_text(10, 10 + 16*(i-64), board[i]);	
 	}
+	
+	draw_text(30, 80, (mouse_y - boardY) / squareWidth);
 }
 
-draw_text(30, 80, (mouse_y - boardY) / squareWidth);
