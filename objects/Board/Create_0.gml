@@ -89,6 +89,8 @@ wasBoardJustFlipped = false;
 depthGrid = ds_grid_create(2, 64);
 pieceDepthOffset = -0.5 / squareWidth;
 
+lastMove = -1;
+
 //
 // Selection
 mouseSquareIndexX = 0;

@@ -117,18 +117,18 @@ function board_make_move(board, move, doAnimation = true, updateEndGameState = t
 	}
 	
 	// Disable Castling
-	if (source == 0 || target == 0)
+	if (source == 0 || target == 0) {
 		b[board_other_squares.black_castle_queenside] = false;
-		moveData.castleBlackQueenSideLost = true;
-	if (source == 7 || target == 7)
+		moveData.castleBlackQueenSideLost = true;}
+	if (source == 7 || target == 7) {
 		b[board_other_squares.black_castle_kingside] = false;
-		moveData.castleBlackKingSideLost = true;
-	if (source == 56 || target == 56)
+		moveData.castleBlackKingSideLost = true;}
+	if (source == 56 || target == 56) {
 		b[board_other_squares.white_castle_queenside] = false;
-		moveData.castleWhiteQueenSideLost = true;
-	if (source == 63 || target == 63)
+		moveData.castleWhiteQueenSideLost = true;}
+	if (source == 63 || target == 63) {
 		b[board_other_squares.white_castle_kingside] = false;
-		moveData.castleWhiteKingSideLost = true;
+		moveData.castleWhiteKingSideLost = true;}
 
 
 	//Push to Stack

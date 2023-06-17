@@ -10,6 +10,8 @@ function game_opening_trie_add_path(gamePath, rootNode) {
 	var stringLength = string_length(gamePath);
 	var currentNode = rootNode;
 	
+	var currentLineIsMistake = false;
+
 	while (reading <= stringLength) {
 		
 		//Get
@@ -28,12 +30,25 @@ function game_opening_trie_add_path(gamePath, rootNode) {
 			currentMove = ""; //Reset
 			
 		} else {
+			
+			//Mark as Mistake
+			if (charReading == "M") {
+				currentLineIsMistake = true;
+				//We can add to the number because we cull it later
+			}
+			
 			//Add
 			currentMove += charReading;
 		}
 		
 		//Increment
 		reading++;
+	}
+
+	//
+	// Set
+	if (currentLineIsMistake) {
+		currentNode.isMistake = true;	
 	}
 
 

@@ -6,10 +6,10 @@ window_set_cursor(cr_none);
 
 //Setup Board with FEN
 defaultFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-test = "k1BB4/2K5/1QP5/8/8/8/8/7q w - - 0 10";
+test = "r3k2r/ppp1bppp/2nq3n/3ppb2/2PPPB2/2N2Q1N/PP3PPP/R3K2R b KQkq -";
 m1both = "nnpp4/nnpk4/nnp1p1Q1/nnP1P3/nnp1p3/n1P1P1q1/2PK4/2PP4 w - -";
 
-myBoard = board_setup(defaultFEN);
+myBoard = board_setup(test);
 
 gameMode = gamemode.free_play;
 agentWhite = noone;
@@ -33,6 +33,9 @@ winnerCol = c_black;
 winnerColBlack = #060812;
 winnerColWhite = #bfab94;
 winnerColStale = c_black;
+
+winnerColComplete = #4bb952;
+winnerColFail = #731919;
 
 
 openingTrieRootNode = game_generate_opening_trie();
