@@ -19,6 +19,7 @@
     {"name":"Generating Threats","order":5,"path":"folders/Scripts/Board/Generating Moves/Generating Threats.yy",},
     {"name":"LookUpTables","order":21,"path":"folders/Scripts/Board/LookUpTables.yy",},
     {"name":"Game","order":16,"path":"folders/Scripts/Game.yy",},
+    {"name":"TrieNodes","order":6,"path":"folders/Scripts/Game/TrieNodes.yy",},
     {"name":"Peice","order":1,"path":"folders/Scripts/Peice.yy",},
     {"name":"Sequences","order":11,"path":"folders/Sequences.yy",},
     {"name":"Shaders","order":6,"path":"folders/Shaders.yy",},
@@ -26,7 +27,6 @@
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
-    {"name":"TrieNodes","order":6,"path":"folders/Scripts/Game/TrieNodes.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"board_piece_is_pinned","order":26,"path":"scripts/board_piece_is_pinned/board_piece_is_pinned.yy",},
