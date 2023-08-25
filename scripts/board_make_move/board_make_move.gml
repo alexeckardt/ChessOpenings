@@ -2,7 +2,7 @@
 //
 //
 //
-function board_make_move(board, move, doAnimation = true, updateEndGameState = true) {
+function board_make_move(board, move, doAnimation = true, updateEndGameState = true, updateStack = true) {
 
 	// Get
 	var b = board.board;
@@ -132,9 +132,11 @@ function board_make_move(board, move, doAnimation = true, updateEndGameState = t
 
 
 	//Push to Stack
-	var stack = board.movesStack;
-	ds_stack_push(stack, moveData);
-	board.turnNumber++;
+	if (updateStack) {
+		var stack = board.movesStack;
+		ds_stack_push(stack, moveData);
+		board.turnNumber++;
+	}
 
 	//Switch W2M
 	b[board_other_squares.white_to_move] = !b[board_other_squares.white_to_move];

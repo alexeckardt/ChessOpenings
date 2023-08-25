@@ -8,7 +8,7 @@ function move_string_generate(movesstring) {
 	var moveArray = string_split(movesstring, ",");
 	//
 	
-	if (array_length(moveArray) == 0) {
+	if (movesstring == "") {
 		return undefined;	
 	}
 	

@@ -16,6 +16,7 @@ function game_set_gamemode(mode) {
 	//Set
 	g.gameMode = mode;
 	g.gameModeOpening = false;
+	g.gameModePuzzle = false;
 			
 	//Create Agents
 	switch (mode) {
@@ -72,6 +73,28 @@ function game_set_gamemode(mode) {
 			g.agentWhite = a;
 			g.followOpeningTrie = true;
 			g.gameModeOpening = true;
+		break;
+		
+		//
+		//
+		//
+		
+		case gamemode.puzzle_black:
+			var a = instance_create_depth(20, 20, 0, oPuzzleAgent);
+			a.isWhite = true;
+			a.game = g;
+			
+			g.agentBlack = a;
+			g.gameModePuzzle = true;
+		break;
+		
+		case gamemode.puzzle_white:
+			var a = instance_create_depth(20, 20, 0, oPuzzleAgent);
+			a.isWhite = false;
+			a.game = g;
+			
+			g.agentWhite = a;
+			g.gameModePuzzle = true;
 		break;
 		
 	}

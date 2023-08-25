@@ -44,6 +44,8 @@ drawBoardThreats = false;
 boardWidth = 8;
 squareWidth = 18;
 
+settingUp = true;
+
 lightSquareTop = #f0d9b5;
 darkSquareTop = #a9805d;
 

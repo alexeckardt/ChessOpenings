@@ -39,7 +39,7 @@ if (!ds_map_empty(animations)) {
 //
 // Particles
 
-if (gameOver) {
+if (gameOver && !Game.id.gameModePuzzle) {
 	gameOverTime++;
 	
 	if (!generatedPiecesReference) {

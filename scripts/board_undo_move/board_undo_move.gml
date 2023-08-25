@@ -4,6 +4,10 @@
 //
 function board_undo_move(board) {
 
+	if (!instance_exists(board)) {
+		return;	
+	}
+
 	var stack = board.movesStack;
 	var b = board.board;
 	var whiteMoved = !b[board_other_squares.white_to_move];
@@ -81,5 +85,14 @@ function board_undo_move(board) {
 	board_populate_threat_map(b, board.threatMap, board.restrictedMoves);
 	
 	//Backstep Opening
-	game_reverse_trie_step(Game.id);
+	var g= Game.id;
+	game_reverse_trie_step(g);
+	
+	//Backstep Puzzle
+	if (g.gameModePuzzle && !g.wonStreak) {
+		g.finishStreak = false;
+		g.wonStreak = false;
+		board.gameOver = false;
+		board.boardGoalY = board.boardRestingY;
+	}
 }

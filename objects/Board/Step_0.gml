@@ -25,32 +25,30 @@ if (keyboard_check_pressed(ord("Z"))) {
 //Animate Grid
 event_user(0);
 
-var moreSetupMoves = startupMoves != undefined;
-var playerHasControl = Game.playerHasControl && !gameOver && !moreSetupMoves;
+settingUp = startupMoves != undefined;
+var playerHasControl = Game.playerHasControl && !gameOver && !settingUp;
 
 
 //
 // Setup Board
 //
-if (moreSetupMoves) {
+if (settingUp) {
 
-	startupMoveTimeLeft--;
+	//Timer
+	if (boardY < room_height) {
+		startupMoveTimeLeft--;
 	
-	if (startupMoveTimeLeft < 0) {
-	//if (keyboard_check_pressed(vk_alt)) {
-		startupMoveTimeLeft = startupMoveSepTime;
+		if (startupMoveTimeLeft < 0) {
+			startupMoveTimeLeft = startupMoveSepTime;
 		
-		var move = startupMoves.move;
-		startupMoves = startupMoves.next;
+			//Get NExt Move
+			var move = startupMoves.move;
+			startupMoves = move_string_get_next(startupMoves);
 		
-		if (startupMoves == undefined) {
-			var hi = true;
+			//Make It
+			board_make_move(id, move, true, true, false); //don't update the move stack
 		}
-		
-		board_make_move(id, move);
 	}
-
-	
 }
 
 
@@ -127,6 +125,37 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 					g.finishStreak = true;
 					g.wonStreak = (g.currentTrieNode != undefined);
 					
+				}
+				
+			}
+			
+			if (result && g.gameModePuzzle) {
+				
+				// See if Move Failed Puzzle
+				if (g.currentPuzzleSolution == undefined) {
+					
+					g.finishStreak = true;
+					g.wonStreak = true;
+					
+				} else {
+					
+					// Lost?
+					if (move != g.currentPuzzleSolution.move) {
+						
+						g.finishStreak = true;
+						g.wonStreak = false;
+					
+					// Didn't lose
+					} else {
+						
+						//Check for end if theres no more moves for me to make
+						g.currentPuzzleSolution = move_string_get_next(g.currentPuzzleSolution);
+						if (g.currentPuzzleSolution == undefined) {
+							g.finishStreak = true;
+							g.wonStreak = true;
+						}
+					
+					}
 				}
 				
 			}

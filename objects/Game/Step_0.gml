@@ -29,11 +29,10 @@ bkgOff = (bkgOff + bkgSpeed) % sprite_get_width(backgroundSprite);
 if (instance_exists(b)) {
 	var w2m = board_white_to_play(b);
 	backgroundMix = lerp(backgroundMix, w2m, 0.1);
-	
 	backgroundRedBlend = lerp(backgroundRedBlend, b.kingInCheck*0.4*!b.gameOver, 0.1);
 	
 	//Don't Fade out here
-	if (gameModeOpening)
+	if (gameModeOpening || gameModePuzzle)
 		backgroundGameOverAlpha = lerp(backgroundGameOverAlpha, b.gameOver*maxGameOverAlpha, 0.1);
 }
 
@@ -44,16 +43,17 @@ if (finishStreak) {
 		if (!myBoard.exiting) {
 		
 			//Background
-			backgroundGameOverAlpha = lerp(backgroundGameOverAlpha, 0.9, 0.1);
+			b.gameOver = true;
 			winnerCol = (wonStreak) ? winnerColComplete : winnerColFail;
 	
 			//Timer
 			finishStreakTimeLeft--;
 			if (finishStreakTimeLeft < 0) {
 		
-				finishStreakTimeLeft = finishStreakTime;
-		
-				myBoard.exiting = true;
+				if (gameModePuzzle == false || wonStreak) {
+					finishStreakTimeLeft = finishStreakTime;
+					myBoard.exiting = true;
+				}
 			}
 		} 
 	} else {
@@ -68,6 +68,15 @@ if (finishStreak) {
 			
 		finishStreak = false;
 		wonStreak = false;
+		
+		// Reset
+		if (gameModePuzzle) {
+			game_setup_puzzle();	
+		}
 
 	}
+}
+
+if (gameModePuzzle && currentPuzzle == undefined) {
+	game_setup_puzzle();
 }
