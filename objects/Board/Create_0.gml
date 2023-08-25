@@ -38,7 +38,7 @@ gameOverTimeNoParticles = 0;
 //
 // Drawing
 //
-drawDebug = false;
+drawDebug = true;
 drawBoardThreats = false;
 
 boardWidth = 8;
@@ -98,3 +98,6 @@ lastMove = -1;
 mouseSquareIndexX = 0;
 mouseSquareIndexY = 0;
 
+startupMoves = undefined;
+startupMoveSepTime = 1;
+startupMoveTimeLeft = startupMoveSepTime;

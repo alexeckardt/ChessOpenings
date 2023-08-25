@@ -2,7 +2,7 @@
 //
 //
 //
-function board_setup(fen) {
+function board_setup(fen, startingMoves="") {
 
 	//Each fen sequence seperated by space
 
@@ -14,6 +14,7 @@ function board_setup(fen) {
 	//Get Board
 	var b = Board.id;
 	b.gameOver = false;
+	b.startupMoves = move_string_generate(startingMoves);
 	
 	//Reading String
 	var stringpos = 1; //1 indexed

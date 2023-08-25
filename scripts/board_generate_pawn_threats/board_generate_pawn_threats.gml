@@ -18,6 +18,6 @@ function board_generate_pawn_threats(boardArray, map, sourceSquare) {
 	var targetEast = sourceSquare + marchOffset + cardinal_get_incr_x(cardinal.east);
 	var targetWest = sourceSquare + marchOffset + cardinal_get_incr_x(cardinal.west);
 
-	if (col != 0) board_add_to_threat_map(map, sourceSquare, targetEast);
-	if (col != 7) board_add_to_threat_map(map, sourceSquare, targetWest);
+	if (col != 7) board_add_to_threat_map(map, sourceSquare, targetEast);
+	if (col != 0) board_add_to_threat_map(map, sourceSquare, targetWest);
 }

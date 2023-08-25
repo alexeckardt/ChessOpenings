@@ -21,12 +21,22 @@ for (var sqrr = 0; sqrr < boardWidth*boardWidth; sqrr++) {
 	var yy = boardY + j*squareWidth + boardShakeY;
 	
 	//Draw If Threat Square
-	if (drawBoardThreats) {
+	if (drawBoardThreats || keyboard_check(vk_alt)) {
+		
+
 		if (ds_map_exists(threatMap, sqrr)) {
-			col = merge_color(col, c_red, 0.25);
+			
+			var source = threatMap[? sqrr];
+			var sat = 255;
+			var seed = ((source * 124) % 360) / 360;
+			if (source > 64) sat = 0; //white if double protected
+			
+			var sourceCol = make_color_hsv(seed*255, sat, 255);
+			
+			col = merge_color(col, sourceCol, 0.6);
 		}
 		if (ds_map_exists(restrictedMoves, sqrr)) {
-			col = merge_color(col, c_green, 0.5);
+			col = merge_color(col, c_black, 0.75);
 		}
 	}
 	
@@ -123,5 +133,36 @@ if (drawDebug) {
 	}
 	
 	draw_text(30, 80, (mouse_y - boardY) / squareWidth);
+	
+	//
+	// Draw of Source Threats
+	//
+	
+	
+	draw_set_font(fontBoard);
+	for (var sqrr = 0; sqrr < 64; sqrr++) {
+		
+		var square = (flippedBoard) ? 63 - sqrr : sqrr;
+	
+		// i and j
+		var i = square mod boardWidth;
+		var j = square div boardWidth;
+
+		// Position
+		var xx = boardX + i*squareWidth + boardShakeX;
+		var yy = boardY + j*squareWidth + boardShakeY;
+		
+		
+		if (drawBoardThreats || keyboard_check(vk_alt)) {
+			if (ds_map_exists(threatMap, sqrr)) {
+				var source = threatMap[? sqrr];
+				
+				if (source < 64) {
+					draw_text_color(xx+4, yy+2, source, c_red, c_red, c_red, c_red, 1);
+				}
+			}
+		}	
+	}
+	
 }
 

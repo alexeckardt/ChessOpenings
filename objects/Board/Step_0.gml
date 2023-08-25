@@ -25,7 +25,34 @@ if (keyboard_check_pressed(ord("Z"))) {
 //Animate Grid
 event_user(0);
 
-var playerHasControl = Game.playerHasControl && !gameOver;
+var moreSetupMoves = startupMoves != undefined;
+var playerHasControl = Game.playerHasControl && !gameOver && !moreSetupMoves;
+
+
+//
+// Setup Board
+//
+if (moreSetupMoves) {
+
+	startupMoveTimeLeft--;
+	
+	if (startupMoveTimeLeft < 0) {
+	//if (keyboard_check_pressed(vk_alt)) {
+		startupMoveTimeLeft = startupMoveSepTime;
+		
+		var move = startupMoves.move;
+		startupMoves = startupMoves.next;
+		
+		if (startupMoves == undefined) {
+			var hi = true;
+		}
+		
+		board_make_move(id, move);
+	}
+
+	
+}
+
 
 //
 // Get Mouse Position
@@ -40,7 +67,7 @@ if (mouseSquareIndexX >= 0 && mouseSquareIndexX < 8
 && mouseSquareIndexY >= 0 && mouseSquareIndexY < 8) {
 	
 	//Pickup
-	if (mouse_check_button(mb_left)) {
+	if (mouse_check_button(mb_left) && playerHasControl) {
 	
 		//Pickup
 		if (pickedUpSquare == -1) {
